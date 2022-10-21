@@ -1,8 +1,13 @@
 import React from 'react'
+import Header from '../components/Header'
 
 const Home = () => {
     return (
-        <div>홈 가즈아!</div>
+        <>
+            <Header />
+            <div>홈 가즈아!</div>
+        </>
+
     )
 }
 

@@ -6,4 +6,6 @@ const MypageDetail = () => {
     )
 }
 
+
+
 export default MypageDetail
