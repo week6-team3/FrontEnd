@@ -1,0 +1,28 @@
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Create from "../pages/Create";
+import Home from "../pages/Home";
+import HomeDetail from "../pages/HomeDetail";
+import LogIn from "../pages/LogIn";
+import Mypage from "../pages/Mypage";
+import MypageDetail from "../pages/MypageDetail";
+import SignUp from "../pages/SignUp";
+
+
+const Router = () => {
+    return (
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/create/add" element={<Create />} />
+                <Route path="/home_deail/:id" element={<HomeDetail />} />
+                <Route path="/users/login/" element={<LogIn />} />
+                <Route path="/users/sign_up/" element={<SignUp />} />
+                <Route path="/mypage/:id" element={<Mypage />} />
+                <Route path="/my_datail/:id" element={<MypageDetail />} />
+            </Routes>
+        </BrowserRouter>
+    );
+};
+
+export default Router;
