@@ -3,7 +3,7 @@ import axios from "axios";
 import _default from "react-redux/es/components/connect";
 
 // 조회
-export const __getCheckList = createAsyncThunk("comments/getCheckList",
+export const __getComments = createAsyncThunk("comments/getCheckList",
   async (payload, thunkAPI) => { // 여기는 왜 코멘트데이터가 아니라 페이로드지?
     try {
       const { data } = await axios.get("http://localhost:3001/comments");
@@ -14,7 +14,7 @@ export const __getCheckList = createAsyncThunk("comments/getCheckList",
     });
 
 // 추가
-export const __addCheckList = createAsyncThunk("comments/addCheckList", 
+export const __addComments = createAsyncThunk("comments/addCheckList", 
   async (commentData, thunkAPI) => {
     try {
       const { data } = await axios.post("http://localhost:3001/comments", commentData);
@@ -27,7 +27,7 @@ export const __addCheckList = createAsyncThunk("comments/addCheckList",
 );
 
 // 삭제
-export const __deleteCheckList = createAsyncThunk("comments/deleteCheckList",
+export const __deleteComments = createAsyncThunk("comments/deleteCheckList",
   async (commentId, thunkAPI) => {
     try {
       await axios.delete(`http://localhost:3001/comments/${commentId}`);
@@ -39,7 +39,7 @@ export const __deleteCheckList = createAsyncThunk("comments/deleteCheckList",
 );
 
 // 수정
-export const __upDateCheckList = createAsyncThunk("comments/upDateCheckList",
+export const __upDateComments = createAsyncThunk("comments/upDateCheckList",
   async (commentId, thunkAPI) => {
     console.log("수정", commentId)  
     try {
@@ -67,59 +67,58 @@ const commentsSlice = createSlice({
   },
   extraReducers: {
     // 댓글 조회하기
-    [__getCheckList.pending]: (state) => {
+    [__getComments.pending]: (state) => {
       state.isLoding = true
     },
-    [__getCheckList.fulfilled]: (state, action) => {
+    [__getComments.fulfilled]: (state, action) => {
       state.isLoding = false
       state.comments = action.payload
     },
-    [__getCheckList.rejected]: (state, action) => {
+    [__getComments.rejected]: (state, action) => {
       state.isLoding = false
       state.error = action.payload
     },
 
     // 댓글 추가하기
-    [__addCheckList.pending]: (state) => {
+    [__addComments.pending]: (state) => {
       state.isLoding = true
     },
-    [__addCheckList.fulfilled]: (state, action) => {
+    [__addComments.fulfilled]: (state, action) => {
       state.isLoding = false
       state.comments.push(action.payload)
     },
-    [__addCheckList.rejected]: (state, action) => {
+    [__addComments.rejected]: (state, action) => {
       state.isLoding = false
       state.error = action.payload
     },
 
     // 댓글 삭제하기
-    [__deleteCheckList.pending]: (state) => {
+    [__deleteComments.pending]: (state) => {
       state.isLoding = true
     },
-    [__deleteCheckList.fulfilled]: (state, action) => {
+    [__deleteComments.fulfilled]: (state, action) => {
       state.isLoding = false
       const target = state.comments.findIndex(
         (comments) => comments.id === action.payload
       );
       state.comments.splice(target, 1)
     },
-    [__deleteCheckList.rejected]: (state, action) => {
+    [__deleteComments.rejected]: (state, action) => {
       state.isLoding = false
       state.error = action.payload
     },
     
     // 댓글 수정하기
-    [__upDateCheckList.pending]: (state) => {
+    [__upDateComments.pending]: (state) => {
       state.isLoding = true
     },
-    [__upDateCheckList.fulfilled]: (state, action) => {
+    [__upDateComments.fulfilled]: (state, action) => {
       state.isLoding = false
       const target = state.comments.findIndex(
-        (comment) => comment.id === action.payload.id
-      );
+        (comment) => comment.id === action.payload.id);
       state.comments.splice(target, 1, action.payload)
     },
-    [__upDateCheckList.rejected]: (state, action) => {
+    [__upDateComments.rejected]: (state, action) => {
       state.isLoding = false;
       state.error = action.payload
     },

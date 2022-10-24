@@ -1,37 +1,82 @@
 {
-  "posts": [],
+  "posts": [
+    {
+      "title": "제주도여행2",
+      "travel": "0",
+      "completion": false,
+      "id": 1
+    },
+    {
+      "title": "아악",
+      "travel": "1",
+      "completion": false,
+      "id": 2
+    }
+  ],
   "comments": [
     {
-      "content": "ㅇㄴㄹㅇㄴㄴㅇㄹㄴㅇㄹㄴ",
-      "id": 32
+      "content": "하요",
+      "id": 20
     },
     {
-      "content": "fsd",
-      "id": 37
+      "content": "추가",
+      "id": 21
     },
     {
-      "content": "",
-      "id": 38
+      "content": "삭제가 될까나",
+      "id": 22
     },
     {
-      "content": "fg",
-      "id": 40
+      "content": "삭제가 될까나",
+      "id": 23
+    }
+  ],
+  "checkList": [
+    {
+      "content": "ㄴㅇㅁㄴ",
+      "isDone": false,
+      "postId": null,
+      "id": 4
     },
     {
-      "content": "fg",
-      "id": 41
+      "content": "ㅇㄴㅁㅇㅁ",
+      "isDone": false,
+      "postId": null,
+      "id": 5
     },
     {
-      "content": "fsd",
-      "id": 42
+      "content": "ㄴㅇ",
+      "isDone": false,
+      "postId": null,
+      "id": 6
     },
     {
-      "content": "fsd",
-      "id": 43
+      "content": "ㄴㅇㅁ",
+      "isDone": false,
+      "postId": null,
+      "id": 7
+    }
+  ],
+  "sharings": [
+    {
+      "1": "",
+      "id": 1
     },
     {
-      "content": "fsd",
-      "id": 44
+      "postId": 1,
+      "id": 2
+    },
+    {
+      "postId": 1,
+      "id": 3
+    },
+    {
+      "postId": 1,
+      "id": 4
+    },
+    {
+      "postId": 1,
+      "id": 5
     }
   ]
 }

@@ -4,11 +4,10 @@ import axios from "axios";
 // 수정 (요청)
 export const __upDateLikes = createAsyncThunk("likes/upDateLikes",
   async (likesId, thunkAPI) => {
-    console.log("수정", likesId)  
     try {
-      const { data } = await axios.patch(`http://localhost:3001/likes/${likesId.id}`, likesId);
+      const { data } = await axios.put(`http://localhost:3001/likes/${likesId.id}`, likesId);
       return thunkAPI.fulfillWithValue(data);
-  } catch (error) {
+    } catch (error) {
       return thunkAPI.rejectWithValue(error);
     }
   }
@@ -35,10 +34,9 @@ const likesSlice = createSlice({
     },
     [__upDateLikes.fulfilled]: (state, action) => {
       state.isLoding = false
-      const target = state.comments.findIndex(
-        (comment) => comment.id === action.payload.id
-      );
-      state.comments.splice(target, 1, action.payload)
+      const target = state.likes.findIndex(
+        (like) => like.id === action.payload.id);
+      state.likes.splice(target, 1, action.payload)
     },
     [__upDateLikes.rejected]: (state, action) => {
       state.isLoding = false;
