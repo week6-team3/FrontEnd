@@ -8,10 +8,10 @@ import Header from '../components/Header'
 import Layout from '../components/Layout'
 import AddCheckForm from '../features/checks/AddCheckForm'
 import CheckList from '../features/checks/CheckList'
+import Button from '../elem/button'
 
 import styled from 'styled-components'
 import Swal from 'sweetalert2'
-import Categorie from '../components/Categorie'
 import CategorieInfo from '../components/CategorieInfo'
 import { __sharePost } from '../redux/modules/sharingsSlice'
 
@@ -122,22 +122,28 @@ const MypageDetail = () => {
                 <CategorieInfo />
                 <Container>
                     <DetailBox>
-                        <div>
-                            <button onClick={() => setIsEdit(prev => !prev)} >{isEdit ? "취소" : "수정"}</button>
-                            <button onClick={onDeleteHandler}>삭제하기</button>
-                        </div>
-                        {!isEdit ? <div><h1>{post?.title}</h1></div> : null}
-                        {isEdit ?
+                        <TitleBox>
                             <div>
-                                <input type="text" value={editPost.title} onChange={(e) => { setEditPost({ ...editPost, title: e.target.value }) }} />
-                                <button onClick={onEditHandler} >저장</button>
+                                {!isEdit ? <div><h1>{post?.title}</h1></div> : null}
+                                {isEdit ?
+                                    <div>
+                                        <input type="text" value={editPost.title} onChange={(e) => { setEditPost({ ...editPost, title: e.target.value }) }} />
+                                        <Button size="size1" onClick={onEditHandler} >저장</Button>
+                                    </div>
+                                    : null}
                             </div>
-                            : null}
+                            <div>
+                                <Button size="size1" onClick={() => setIsEdit(prev => !prev)} >{isEdit ? "취소" : "수정"}</Button>
+                                <Button size="size1" onClick={onDeleteHandler}>삭제</Button>
+                            </div>
+                        </TitleBox>
 
-                        <h2>아래부터 체크리스트</h2>
-                        <AddCheckForm />
-                        <CheckList />
-                        <button onClick={sharePost}>공유하기</button>
+                        <CheckListWrap>
+                            <AddCheckForm />
+                            <CheckList />
+
+                        </CheckListWrap>
+                        <Btn onClick={sharePost}>공유하기</Btn>
                     </DetailBox>
                 </Container>
                 <Footer />
@@ -152,9 +158,9 @@ const Container = styled.div`
     
     box-shadow: 3px 5px 5px 1px gray;
     width: 100%;
-    height: 70rem;
+    height: 75rem;
     background-color: #F9EBD7 ;
-    padding: 30px;
+    padding: 20px;
 `
 
 const DetailBox = styled.div`
@@ -163,9 +169,56 @@ const DetailBox = styled.div`
     align-content: center;
     flex-wrap: nowrap;
     align-items: center;
+    padding:10px;
 
-    width: 50%;
+    width: 80%;
     height:100%;
     margin: auto;
-    border: 1px solid #293991
+    /* border: 1px solid #293991; */
+    border-radius: 10px;
+    
+    
+`
+
+const TitleBox = styled.div`
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+
+    width:100%;
+    height:5rem;
+    padding:20px;
+    background-color: #293991;
+    color: white;
+    border: 1px solid #293991;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+`
+
+const CheckListWrap = styled.div`
+    display:flex;
+    flex-direction: column;
+    width:100%;
+    height: 55rem;
+    padding:20px;
+    border: 1px solid #293991;
+    margin-bottom: 4rem;
+    /* background-color: #293991; */
+    
+`
+
+
+
+const Btn = styled.button`
+    width: 8rem;
+    height: 4rem;
+    background-color: #293991;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    &:hover{
+        background-color: #1b2661;
+    }
+    
+
 `
