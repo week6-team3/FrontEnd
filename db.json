@@ -1,0 +1,53 @@
+{
+  "posts": [
+    {
+      "title": "제주도여행2",
+      "travel": "0",
+      "completion": false,
+      "id": 1
+    }
+  ],
+  "comments": [],
+  "checkList": [
+    {
+      "content": "asd",
+      "isDone": false,
+      "postId": 1,
+      "id": 1
+    },
+    {
+      "content": "asd",
+      "isDone": false,
+      "postId": 1,
+      "id": 2
+    },
+    {
+      "content": "ㄴㅁㅇ",
+      "isDone": false,
+      "postId": 1,
+      "id": 3
+    }
+  ],
+  "sharings": [
+    {
+      "1": "",
+      "id": 1
+    },
+    {
+      "postId": 1,
+      "id": 2
+    },
+    {
+      "postId": 1,
+      "id": 3
+    },
+    {
+      "postId": 1,
+      "id": 4
+    },
+    {
+      "postId": 1,
+      "id": 5
+    }
+  ]
+}
