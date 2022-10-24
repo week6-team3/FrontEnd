@@ -15,6 +15,8 @@ export default Layout;
 const LayoutWrap = styled.div`
     max-width: 1200px;
     min-width: 800px;
-    margin: auto;
+    width:80rem;
+    margin:50px auto;
     background-color: violet;
+    border-radius: 15px;
 `
