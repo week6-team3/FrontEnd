@@ -5,27 +5,75 @@
       "travel": "0",
       "completion": false,
       "id": 1
+    },
+    {
+      "title": "일본 여행 준비",
+      "travel": "1",
+      "completion": false,
+      "id": 2
+    },
+    {
+      "title": "강릉여행 체크리스트",
+      "travel": "0",
+      "completion": false,
+      "id": 3
+    },
+    {
+      "title": "부산 여행",
+      "travel": "0",
+      "completion": false,
+      "id": 4
+    },
+    {
+      "title": "ㅁㄴㅇㅁㄴㅇ",
+      "travel": "0",
+      "completion": false,
+      "id": 5
     }
   ],
   "comments": [],
   "checkList": [
     {
-      "content": "asd",
-      "isDone": false,
+      "content": "여권",
+      "isDone": true,
       "postId": 1,
       "id": 1
     },
     {
-      "content": "asd",
+      "content": "책",
       "isDone": false,
       "postId": 1,
       "id": 2
     },
     {
-      "content": "ㄴㅁㅇ",
-      "isDone": false,
+      "content": "환전한 돈",
+      "isDone": true,
       "postId": 1,
-      "id": 3
+      "id": 5
+    },
+    {
+      "content": "신분증",
+      "isDone": true,
+      "postId": 1,
+      "id": 6
+    },
+    {
+      "content": "ㅁㄴㅇㅁㄴㅇ",
+      "isDone": false,
+      "postId": 2,
+      "id": 7
+    },
+    {
+      "content": "ㅁㄴㅁㅇㄴ",
+      "isDone": true,
+      "postId": 3,
+      "id": 8
+    },
+    {
+      "content": "ㅁㄴㅇㅁㄴㅇ",
+      "isDone": true,
+      "postId": 4,
+      "id": 9
     }
   ],
   "sharings": [
