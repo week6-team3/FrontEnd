@@ -1,7 +1,5 @@
-import React from "react";
-
 const postsSlice = () => {
-  return <div>pe</div>;
+  return <div>postsSlice</div>;
 };
 
 export const {} = postsSlice.actions;

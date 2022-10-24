@@ -20,8 +20,6 @@ const Router = () => {
                 <Route path="/users/sign_up/" element={<SignUp />} />
                 <Route path="/mypage/:id" element={<Mypage />} />
                 <Route path="/my_detail/:id" element={<MypageDetail />} />
-                {/* 잠시추가 */}
-                <Route path="/my_detail" element={<MypageDetail />} />
             </Routes>
         </BrowserRouter>
     );

@@ -12,7 +12,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: #FFE9AD;
+    background-color: #ffffff;
     overflow: hidden;
   }
 
