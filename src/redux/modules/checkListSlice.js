@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import Api from "../../shared/Api";
 
 const initialState = {
   checkList: [],
@@ -13,10 +14,7 @@ export const __addCheckList = createAsyncThunk(
   async (checkData, thunkAPI) => {
     console.log("ch", checkData);
     try {
-      const { data } = await axios.post(
-        "http://localhost:3001/checkList",
-        checkData
-      );
+      const { data } = await Api.post("/checkList", checkData);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -29,7 +27,7 @@ export const __getCheckList = createAsyncThunk(
   "checkList/getCheckList",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/checkList");
+      const { data } = await Api.get("/checkList");
       const newData = data.sort((a, b) => b.id - a.id); //내림차순
       // console.log("new", newData);
       return thunkAPI.fulfillWithValue(newData);
@@ -44,7 +42,7 @@ export const __deleteCheckList = createAsyncThunk(
   "checkLists/deleteCheckList",
   async (checkId, thunkAPI) => {
     try {
-      await axios.delete(`http://localhost:3001/checkList/${checkId}`);
+      await Api.delete(`/checkList/${checkId}`);
       return thunkAPI.fulfillWithValue(checkId);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -58,8 +56,8 @@ export const __editCheckList = createAsyncThunk(
   async (checkId, thunkAPI) => {
     try {
       console.log("vd", checkId);
-      const { data } = await axios.patch(
-        `http://localhost:3001/checkList/${checkId.id}`,
+      const { data } = await Api.patch(
+        `/checkList/${checkId.id}`,
         checkId.data
       );
 

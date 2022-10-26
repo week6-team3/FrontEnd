@@ -12,7 +12,7 @@ const cookie = new Cookies()
 const Api = axios.create({
     baseURL: process.env.REACT_APP_API_URL,
     headers: {
-        Authorization: `Bearer ${myToken}`,
+        authorization: `Bearer ${myToken}`,
         "Content-Type": "application/x-www-form-urlencoded; charset=utf-8",
         Accept: "*/*",
         "refresh-token": getRefreshToken(),

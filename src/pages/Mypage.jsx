@@ -9,9 +9,11 @@ import Layout from '../components/Layout'
 import PostCard from '../components/PostCard'
 
 import styled from 'styled-components'
+import { useParams } from 'react-router-dom'
 
 const Mypage = () => {
     const dispatch = useDispatch();
+    // const { id } = useParams();
 
     const { posts } = useSelector((state) => state.posts)
 

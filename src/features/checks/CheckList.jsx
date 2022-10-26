@@ -12,8 +12,7 @@ const CheckList = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const { checkList } = useSelector(state => state.checkList)
-    console.log("cL", checkList)
-    console.log("id", id)
+
 
     useEffect(() => {
         dispatch(__getCheckList())
