@@ -49,7 +49,7 @@ const LogIn = (props) => {
                 navigate("/");
             }
         } catch (error) {
-            console.log(error);
+
             if (error.code === "ERR_BAD_REQUEST") {
                 Swal.fire({
                     icon: "error",

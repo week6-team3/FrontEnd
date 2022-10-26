@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { __getPosts } from '../redux/modules/postsSlice'
+import { __detailPosts, __getPosts } from '../redux/modules/postsSlice'
 
 import Categorie from '../components/Categorie'
 import Footer from '../components/Footer'
@@ -9,15 +9,21 @@ import Layout from '../components/Layout'
 import PostCard from '../components/PostCard'
 
 import styled from 'styled-components'
+import { useParams } from 'react-router-dom'
 
 const Mypage = () => {
     const dispatch = useDispatch();
+    // const { id } = useParams();
 
     const { posts } = useSelector((state) => state.posts)
 
     useEffect(() => {
         dispatch(__getPosts());
     }, [dispatch])
+    useEffect(() => {
+        dispatch(__detailPosts());
+    }, [dispatch])
+
 
     return (
         <>

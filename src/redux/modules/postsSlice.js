@@ -42,10 +42,7 @@ export const __editPosts = createAsyncThunk(
   "posts/editPosts",
   async (postId, thunkAPI) => {
     try {
-      const { data } = await axios.patch(
-        `http://localhost:3001/posts/${postId.id}`,
-        postId
-      );
+      const { data } = await Api.patch(`/posts/${postId.id}`, postId);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -58,7 +55,21 @@ export const __deletePosts = createAsyncThunk(
   "posts/deletePosts",
   async (postId, thunkAPI) => {
     try {
-      await axios.delete(`http://localhost:3001/posts/${postId}`);
+      await Api.delete(`/posts/${postId}`);
+      return thunkAPI.fulfillWithValue(postId);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+/** 게시글 상세보기 조회 Thunl */
+export const __detailPosts = createAsyncThunk(
+  "posts/detailPosts",
+  async (postId, thunkAPI) => {
+    console.log("thunk", postId);
+    try {
+      await Api.get(`/posts/${postId}`);
       return thunkAPI.fulfillWithValue(postId);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -124,14 +135,18 @@ const postsSlice = createSlice({
       state.isLoading = false;
       state.posts = action.payload;
     },
-    /**체크리스트 추가 */
-    // [__addCheck.fulfilled]: (state, action) => {
-    //   state.isLoading = false;
-    //   const target = state.posts.findIndex(
-    //     (post) => post.id === action.payload.id
-    //   );
-    //   state.posts[target] = action.payload;
-    // },
+    /**게시글 상세 조회 */
+    [__detailPosts.pending]: (state) => {
+      state.isLoading = true;
+    },
+    [__detailPosts.fulfilled]: (state, action) => {
+      state.isLoading = false;
+      state.posts = action.payload;
+    },
+    [__detailPosts.rejected]: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 

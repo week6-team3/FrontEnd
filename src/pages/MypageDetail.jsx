@@ -38,6 +38,11 @@ const MypageDetail = () => {
         dispatch(__getPosts())
     }, [dispatch])
 
+    useEffect(() => {
+        dispatch(__getPosts());
+    }, [dispatch])
+
+
     const onDeleteHandler = (e) => {
         e.stopPropagation()
         Swal.fire({
@@ -74,7 +79,7 @@ const MypageDetail = () => {
         dispatch(__editPosts({ ...post, ...editPost }))
         setIsEdit(false)
     }
-    console.log("share", post)
+
     const sharePost = (e) => {
         e.preventDefault()
         Swal.fire({
