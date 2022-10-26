@@ -1,32 +1,36 @@
 import React, { useState } from 'react';
-import BottomNavigation from '@mui/material/BottomNavigation';
-import BottomNavigationAction from '@mui/material/BottomNavigationAction';
-import FlightTakeoffRoundedIcon from '@mui/icons-material/FlightTakeoffRounded';
-import FlightRoundedIcon from '@mui/icons-material/FlightRounded';
-import FlightLandRoundedIcon from '@mui/icons-material/FlightLandRounded';
+import { useNavigate } from 'react-router-dom';
+
 
 import styled from 'styled-components';
+import Swal from 'sweetalert2';
+import Button from '../elem/button';
+import { getCookieToken } from '../shared/cookie';
 
 const Categorie = () => {
-    const [value, setValue] = useState('recents');
 
-    const handleChange = (event, newValue) => {
-        setValue(newValue);
-    };
+
+    const navigate = useNavigate()
+
+    const createSubmit = (e) => {
+        e.preventDefault()
+        if (getCookieToken('AccessToken') !== undefined) {
+            navigate('/create/add')
+        } else {
+            Swal.fire(
+                '로그인 해주세요!',
+                '로그인 후 이용 가능합니다!',
+                'warning'
+            )
+            navigate('/users/login')
+        }
+    }
 
     return (
         <SubHeader>
-            <BottomNavigation className='btnBox'
-                showLabels
-                value={value}
-                onChange={(event, newValue) => {
-                    setValue(newValue);
-                }}
-            >
-                <BottomNavigationAction label="국내여행" icon={<FlightTakeoffRoundedIcon sx={{ fontSize: '25px' }} />} />
-                <BottomNavigationAction label="해외여행" icon={<FlightRoundedIcon sx={{ fontSize: '25px' }} />} />
-                <BottomNavigationAction label="about us" icon={<FlightLandRoundedIcon sx={{ fontSize: '25px' }} />} />
-            </BottomNavigation>
+            <Button id="btn" size='size2' onClick={createSubmit} >
+                게시글 작성
+            </Button>
         </SubHeader>
 
     );
@@ -38,12 +42,14 @@ const SubHeader = styled.div`
     box-shadow: 3px 5px 5px 1px gray;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
     border-bottom: 1px solid gray;
-    .btnBox{
-        background-color:#F9EBD7;
-        width:100%;
-
+    background-color:#F9EBD7;
+    width: 100%;
+    height: 6rem;
+    #btn{
+        width: 9rem;
+        margin-right: 3rem;
     }
     `

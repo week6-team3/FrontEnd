@@ -7,7 +7,8 @@ import LogIn from "../pages/LogIn";
 import Mypage from "../pages/Mypage";
 import MypageDetail from "../pages/MypageDetail";
 import SignUp from "../pages/SignUp";
-import { __getPosts } from "../redux/modules/postsSlice";
+
+
 
 
 const Router = () => {
@@ -18,8 +19,8 @@ const Router = () => {
                 <Route path="/" element={<Home />} />
                 <Route path="/create/add" element={<Create />} />
                 <Route path="/home_detail/:id" element={<HomeDetail />} />
-                <Route path="/users/login/" element={<LogIn />} />
-                <Route path="/users/sign_up/" element={<SignUp />} />
+                <Route path="/users/login" element={<LogIn />} />
+                <Route path="/users/sign_up" element={<SignUp />} />
                 <Route path="/mypage/:id" element={<Mypage />} />
                 <Route path="/my_detail/:id" element={<MypageDetail />} />
             </Routes>

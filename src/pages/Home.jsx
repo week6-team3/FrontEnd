@@ -1,13 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
 import PostCard from '../components/PostCard'
 
-import Button from '@mui/material/Button';
+
 import Categorie from '../components/Categorie'
+import { useDispatch } from 'react-redux'
+import { __shareGet } from '../redux/modules/sharingsSlice'
+import Button from '../elem/button'
+import { useNavigate } from 'react-router-dom'
+import { getCookieToken } from '../shared/cookie'
+import Swal from 'sweetalert2'
 const Home = () => {
+
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+    useEffect(() => {
+        dispatch(__shareGet())
+    }, [dispatch])
+
 
 
     return (
@@ -16,11 +30,7 @@ const Home = () => {
                 <Header />
                 <Categorie />
                 <Container>
-                    <BtnBox>
-                        <Button style={{ backgroundColor: "#293991" }} variant="contained" href="/create/add">
-                            게시글 작성
-                        </Button>
-                    </BtnBox>
+
                     <PostCard />
                 </Container>
                 <Footer />
@@ -38,8 +48,4 @@ const Container = styled.div`
     height: 70rem;
     background-color: #F9EBD7 ;
     padding: 30px;
-`
-const BtnBox = styled.div`
-    display:flex;
-    flex-direction: row-reverse;
 `

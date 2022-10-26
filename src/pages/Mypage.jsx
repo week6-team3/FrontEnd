@@ -25,7 +25,13 @@ const Mypage = () => {
                 <Header />
                 <Categorie />
                 <Container>
-                    {posts?.map((post) => (<PostCard key={post.id} post={post} />))}
+                    <ListWrapper>
+                        {posts.filter(post => !post.completion).map(post => <PostCard key={post.id} post={post} />)}
+                    </ListWrapper>
+                    <ListLine />
+                    <ListWrapper>
+                        {posts.filter(post => post.completion).map(post => <PostCard key={post.id} post={post} />)}
+                    </ListWrapper>
                 </Container>
                 <Footer />
             </Layout>
@@ -46,4 +52,34 @@ const Container = styled.div`
     height: 70rem;
     background-color: #F9EBD7 ;
     padding: 30px;
+
+    overflow: auto;
+    &::-webkit-scrollbar {
+    width: 10px;
+    
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #293991;
+    border-radius: 10px;
+    background-clip: padding-box;
+    border: 2px solid transparent;
+  }
+  &::-webkit-scrollbar-track {
+    background-color: #ccd1e8;
+    border-radius: 10px;
+    box-shadow: inset 0px 0px 5px white;
+  }
+`
+const ListLine = styled.div`
+    width: 100%;
+    margin: auto;
+    border-bottom: 2px solid #293991;
+`
+
+const ListWrapper = styled.div`
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+
 `

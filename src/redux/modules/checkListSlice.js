@@ -1,8 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// const BASE_URL = process.env.REACT_APP_COMMENTS_URL;
-
 const initialState = {
   checkList: [],
   isLoading: false,
