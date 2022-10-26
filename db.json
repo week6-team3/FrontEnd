@@ -1,65 +1,33 @@
 {
   "posts": [
     {
-      "title": "제주도여행2",
+      "title": "테스트",
       "travel": "0",
       "completion": false,
       "id": 1
     },
     {
-      "title": "아악",
+      "title": "테스트2 추가공유",
       "travel": "1",
       "completion": false,
       "id": 2
-    }
-  ],
-  "comments": [
-    {
-      "content": "하요",
-      "id": 20
     },
     {
-      "content": "추가",
-      "id": 21
+      "title": "ㅋㅋ",
+      "travel": "1",
+      "completion": false,
+      "id": 3
     },
     {
-      "content": "삭제가 될까나",
-      "id": 22
-    },
-    {
-      "content": "삭제가 될까나",
-      "id": 23
-    }
-  ],
-  "checkList": [
-    {
-      "content": "ㄴㅇㅁㄴ",
-      "isDone": false,
-      "postId": null,
+      "title": "ㅇㄹ",
+      "travel": "0",
+      "completion": false,
       "id": 4
-    },
-    {
-      "content": "ㅇㄴㅁㅇㅁ",
-      "isDone": false,
-      "postId": null,
-      "id": 5
-    },
-    {
-      "content": "ㄴㅇ",
-      "isDone": false,
-      "postId": null,
-      "id": 6
-    },
-    {
-      "content": "ㄴㅇㅁ",
-      "isDone": false,
-      "postId": null,
-      "id": 7
     }
   ],
   "sharings": [
     {
-      "1": "",
+      "postId": 1,
       "id": 1
     },
     {
@@ -75,8 +43,169 @@
       "id": 4
     },
     {
-      "postId": 1,
+      "postId": 2,
       "id": 5
+    },
+    {
+      "postId": 2,
+      "id": 6
+    },
+    {
+      "postId": 3,
+      "id": 7
     }
-  ]
+  ],
+  "comments": [
+    {
+      "content": "",
+      "postId": 7,
+      "id": 1
+    },
+    {
+      "content": "",
+      "postId": 7,
+      "id": 2
+    }
+  ],
+  "checkList": [
+    {
+      "content": "테스트",
+      "isDone": false,
+      "postId": 1,
+      "id": 1
+    },
+    {
+      "content": "테스트1",
+      "isDone": false,
+      "postId": 1,
+      "id": 2
+    },
+    {
+      "content": "테스트2",
+      "isDone": false,
+      "postId": 1,
+      "id": 3
+    },
+    {
+      "content": "테스트 추가",
+      "isDone": false,
+      "postId": 1,
+      "id": 4
+    },
+    {
+      "content": "테스트2",
+      "isDone": false,
+      "postId": 2,
+      "id": 5
+    },
+    {
+      "content": "테스트22",
+      "isDone": false,
+      "postId": 2,
+      "id": 6
+    },
+    {
+      "content": "테스트222",
+      "isDone": false,
+      "postId": 2,
+      "id": 7
+    },
+    {
+      "content": "ㅇㄴㅁㅇㅁ",
+      "isDone": false,
+      "postId": 3,
+      "id": 8
+    },
+    {
+      "content": "가나다",
+      "isDone": false,
+      "postId": null,
+      "id": 9
+    },
+    {
+      "content": "ㅎㅇㄴㄹ",
+      "isDone": false,
+      "postId": null,
+      "id": 10
+    },
+    {
+      "content": "가나다",
+      "isDone": false,
+      "postId": 4,
+      "id": 11
+    },
+    {
+      "content": "가나다",
+      "isDone": false,
+      "postId": 4,
+      "id": 12
+    },
+    {
+      "content": "가나다",
+      "isDone": false,
+      "postId": 4,
+      "id": 13
+    },
+    {
+      "content": "가나다",
+      "isDone": false,
+      "postId": 4,
+      "id": 14
+    },
+    {
+      "content": "가나다",
+      "isDone": false,
+      "postId": 4,
+      "id": 15
+    },
+    {
+      "content": "가나다",
+      "isDone": false,
+      "postId": 4,
+      "id": 16
+    },
+    {
+      "content": "가나다",
+      "isDone": false,
+      "postId": 4,
+      "id": 17
+    },
+    {
+      "content": "가나다",
+      "isDone": false,
+      "postId": 4,
+      "id": 18
+    },
+    {
+      "content": "가나다",
+      "isDone": false,
+      "postId": 4,
+      "id": 19
+    },
+    {
+      "content": "ㅋㅋㅋㅋㅋㅋㅋㅋㅋ",
+      "isDone": false,
+      "postId": 2,
+      "id": 20
+    },
+    {
+      "content": "ㅋㅋㅋㅋㅋㅋㅋㅋ",
+      "isDone": false,
+      "postId": 2,
+      "id": 21
+    },
+    {
+      "content": "ㅋㅋㅋㅋㅋ",
+      "isDone": false,
+      "postId": 2,
+      "id": 22
+    },
+    {
+      "content": "ㅋ",
+      "isDone": false,
+      "postId": 2,
+      "id": 23
+    }
+  ],
+  "isMyLike": []
 }

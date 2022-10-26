@@ -1,11 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-
 
 import styled from 'styled-components';
 
-const PostCard = ({ post }) => {
+const ShareCard = ({ share }) => {
     const navigate = useNavigate();
+
+    const { posts } = useSelector(state => state.posts);
+    
+    const post = posts.find((post) => post.id === share.postId)
+    console.log(posts)
 
     return (
         <Card>
@@ -13,11 +18,11 @@ const PostCard = ({ post }) => {
                 <p>{post?.title}</p>
                 <div>{post?.travel === "0" ? <div id="p1">해외여행</div> : <div id="p2">국내여행</div>}</div>
             </TextBox>
-            <button onClick={() => navigate(`/my_detail/${post.id}`)}>둘러보기</button>
+            <button onClick={() => navigate(`/home_detail/${share.id}`)}>둘러보기</button>
         </Card>
     );
 }
-export default PostCard
+export default ShareCard
 
 const Card = styled.div`
     display:flex;
@@ -30,12 +35,6 @@ const Card = styled.div`
     background-repeat : no-repeat;
     background-position: center;
     background-size: 20rem 28rem;
-    /* overflow: hidden;
-    transition: all 0.2s linear;
-    &:hover{
-        transform: scale(1.2);
-
-    } */
     
     width: 20rem;
     height: 28rem;
@@ -89,22 +88,3 @@ const TextBox = styled.div`
     }
 
 `
-
-
-
-
-
-
-
-
-
-
-// import React from 'react'
-
-// const PostCard = () => {
-//     return (
-//         <div>PostCard</div>
-//     )
-// }
-
-// export default PostCard

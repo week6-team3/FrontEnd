@@ -1,29 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState } from "react";
+import {HeartOutlined, HeartFilled} from '@ant-design/icons';
+import styled from "styled-components";
+
 
 function Likes() {
-  const dispatch = useDispatch();
-  const { likes } = useSelector((state) => state.likes);
-  console.log(likes)
 
-  const [like, setLike] = useState(0);
-
-  return (
-    <div>
-      <h3>
-        <span onClick={()=>{setLike(like + 1)}}> ♥ </span>
-        
-        <span
-        onClick={()=>{
-          dispatch(__upDateLikes({postId}
-            // 여기에 코드 쳐야해
-          ))}}>
-          ♥
-          </span>
-        {like}
-      </h3>
-    </div>
-  )
-};
+  return
+  // (
+  // <div>
+  // <HeartFilled style={{ color: 'red', fontSize: '30px'}} />
+  // <HeartOutlined style={{ fontSize: '30px'}}/>
+  // </div>
+  // )
+}
 
 export default Likes;

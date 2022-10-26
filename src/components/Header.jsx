@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import styled from 'styled-components';
 import Categorie from './Categorie';
+import { Navigate } from 'react-router-dom';
 
 const Header = () => {
     return (

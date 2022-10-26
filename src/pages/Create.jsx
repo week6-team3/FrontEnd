@@ -89,10 +89,11 @@ const Create = () => {
                                 </RadioGroup>
                             </RadidGr>
                         </FormControl>
-                        {/* 체크리스트
-                        <input value={check} type="text" onChange={onCheckHandler} />
-                        <button onClick={submitCheck}>추가</button> */}
-
+                        {/* <form action="http://localhost:3000/posts" enctype="multipart/form-data" method="post">
+                            <label for="img"></label>
+                            <input type="file" id="img" name="img", accept="image/*">
+                            <input type="submit" value="제출">
+                        </form> */}
 
 
                         <Button variant="contained" onClick={postsSubmit}>Contained</Button>

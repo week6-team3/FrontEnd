@@ -7,9 +7,11 @@ import LogIn from "../pages/LogIn";
 import Mypage from "../pages/Mypage";
 import MypageDetail from "../pages/MypageDetail";
 import SignUp from "../pages/SignUp";
+import { __getPosts } from "../redux/modules/postsSlice";
 
 
 const Router = () => {
+
     return (
         <BrowserRouter>
             <Routes>

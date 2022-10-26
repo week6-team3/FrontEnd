@@ -4,7 +4,7 @@ import _default from "react-redux/es/components/connect";
 
 // 조회
 export const __getComments = createAsyncThunk("comments/getCheckList",
-  async (payload, thunkAPI) => { // 여기는 왜 코멘트데이터가 아니라 페이로드지?
+  async (payload, thunkAPI) => {
     try {
       const { data } = await axios.get("http://localhost:3001/comments");
       return thunkAPI.fulfillWithValue(data);
@@ -16,6 +16,7 @@ export const __getComments = createAsyncThunk("comments/getCheckList",
 // 추가
 export const __addComments = createAsyncThunk("comments/addCheckList", 
   async (commentData, thunkAPI) => {
+    console.log("추가",commentData)
     try {
       const { data } = await axios.post("http://localhost:3001/comments", commentData);
     return thunkAPI.fulfillWithValue(data);
@@ -29,8 +30,10 @@ export const __addComments = createAsyncThunk("comments/addCheckList",
 // 삭제
 export const __deleteComments = createAsyncThunk("comments/deleteCheckList",
   async (commentId, thunkAPI) => {
+    console.log("삭제", commentId)
     try {
       await axios.delete(`http://localhost:3001/comments/${commentId}`);
+      
       return thunkAPI.fulfillWithValue(commentId);
   } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -44,6 +47,7 @@ export const __upDateComments = createAsyncThunk("comments/upDateCheckList",
     console.log("수정", commentId)  
     try {
       const { data } = await axios.patch(`http://localhost:3001/comments/${commentId.id}`, commentId);
+      
       return thunkAPI.fulfillWithValue(data);
   } catch (error) {
       return thunkAPI.rejectWithValue(error);

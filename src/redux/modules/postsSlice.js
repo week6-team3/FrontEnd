@@ -27,6 +27,7 @@ const initialState = {
 export const __addPosts = createAsyncThunk(
   "posts/addPosts",
   async (postData, thunkAPI) => {
+    console.log("ps", postData);
     try {
       const { data } = await axios.post(
         "http://localhost:3001/posts/",
@@ -45,6 +46,8 @@ export const __getPosts = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await axios.get("http://localhost:3001/posts");
+
+      console.log(typeof data.travel);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);

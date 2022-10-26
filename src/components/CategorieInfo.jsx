@@ -43,9 +43,9 @@ const CategorieInfo = () => {
     }
     return (
         <InfoHeader>
-            <button onClick={onClickDt}>국내여행 뭘 챙길까?!</button>
-            <button onClick={onClickOt}>해외여행 뭘 챙길까?!</button>
-            <button onClick={onClickInfo}>기내반입 금지 물품!</button>
+            <Btn onClick={onClickDt}>국내여행 뭘 챙길까?!</Btn>
+            <Btn onClick={onClickOt}>해외여행 뭘 챙길까?!</Btn>
+            <Btn onClick={onClickInfo}>기내반입 금지 물품!</Btn>
         </InfoHeader>
     )
 }
@@ -62,5 +62,24 @@ const InfoHeader = styled.div`
     height:5rem;
     border-bottom: 1px solid gray;
     background-color:#F9EBD7;
-    
+    gap: 4rem;
     `
+const Btn = styled.button`
+    width: 15rem;
+    height: 3rem;
+
+    background-color:#F9EBD7;
+    border: none;
+    
+    &:hover{
+        /* background-color:#fce8cd; */
+        box-shadow: 1px 1px 2px gray;
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        border: none;
+        border-bottom: 3px solid #293991;
+    }
+    
+`

@@ -1,47 +1,51 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import { __addComments, __deleteComments, __getComments, __upDateComments } from "../../redux/modules/commentsSlice";
 
+
 const CommentList = () => {
+  const {id} = useParams();
   const dispatch = useDispatch();
   const { comments } = useSelector((state) => state.comments);
-  console.log("comment", comments); // "comment"는 그냥 이름임
+  console.log("comment", comments);
   const contentRef = useRef();
 
   useEffect(() => {
     dispatch(__getComments());
-  }, []);
+  }, [dispatch]);
+
+  const newComments = comments?.filter((comments) => comments.postId === Number(id))
 
   const onClick = () => {
-    // 데이터 추가
     const content = contentRef.current.value;
-
-    dispatch(__addComments({ content }));
+    dispatch(__addComments({ content, postId:+id}));
   };
 
   return (
-    <StDetailBox>
+    <div>
       <StInput
         type="text"
         ref={contentRef}
         placeholder="댓글을 입력해 주세요."
         maxLength="50"
       />
-      <Stbutton onClick={onClick}>댓글작성</Stbutton>
+      <StbuttonInput onClick={onClick}>댓글작성</StbuttonInput>
       <StBox>
-      {comments.map((value) => {
+      {newComments.map((value) => {
         return (
           <div key={value.id}>
             <StComment>{value.content}</StComment>
-            <button
+            <ButtonGroup>
+            <Deletbtn
               onClick={() => {
                 dispatch(__deleteComments(value.id));
               }}
             >
               삭제
-            </button>
-            <button
+            </Deletbtn>
+            <Editbtn
               onClick={() => {
                 dispatch(__upDateComments({
                     id: value.id,
@@ -51,72 +55,83 @@ const CommentList = () => {
               }}
             >
               수정
-            </button>
+            </Editbtn>
+          </ButtonGroup>
           </div>
         );
       })}
       </StBox>
-    </StDetailBox>
+    </div>
   );
 };
 
 export default CommentList
-
 const StInput = styled.input`
-  width: 300px;
-  height: 50px;
+  width: 77.5%;
+  height: 35px;
   padding: 0 20px;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 220px;
+  margin-left: 10px;
   border: 2px solid #eee;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
 `;
 
-const Stbutton = styled.button`
+const StbuttonInput = styled.button`
   width: 100px;
-  height: 20px;
+  height: 30px;
   padding: 0 20px;
-  margin-top: 40px;
+  margin-top: 10px;
+  margin-left: 20px;
   border: 2px solid #eee;
   border-radius: 40px;
   cursor: pointer;
 `;
 
-const StComment = styled.div`
-  width: 80%;
-  margin: 0 auto;
-  height: 50px;
-  padding: 0 20px;
-  margin-top: 10px;
-  border: 2px solid #293991;
-  border-radius: 20px;
-  cursor: pointer;
-  font-size: large;
+const ButtonGroup = styled.div`
+  margin-left:80%;
+  margin-top:-5%;
+  display:flex;
 `;
 
-const StDetailBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-    flex-wrap: nowrap;
-    align-items: center;
+const Deletbtn = styled.button`
+  width: 70px;
+  height: 30px;
+  border: 2px solid #eee;
+  border-radius: 40px;
+  cursor: pointer;
+`;
 
-    width: 70%;
-    height:100%;
-    margin: auto;
-    border: 1px solid #293991
-`
+const Editbtn = styled.button`
+  width: 70px;
+  height: 30px;
+  border: 2px solid #eee;
+  border-radius: 40px;
+  cursor: pointer;
+
+`;
+
+const StComment = styled.div`
+  width: 78%;
+  height: 40px;
+  padding: 0 20px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border: 2px solid #293991;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: medium;
+`;
 
 const StBox = styled.div`
-width: 90%;
-margin: 0 auto;
-height: 280px;
-margin-top: 300px;
+background-color: black;
+width: 100%;
+height: 225px;
 overflow-x: hidden;
 overflow-y: auto;
 &::-webkit-scrollbar{
-  width: 8px
+  width: 7px
 }
 &::-webkit-scrollbar-thumb {
   background: #293991;
