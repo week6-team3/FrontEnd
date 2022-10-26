@@ -1,27 +1,12 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import Api from "../../shared/Api";
 
 const initialState = {
   posts: [],
   isLoading: false,
   error: null,
 };
-/**체크리스트 추가Thunk */
-// export const __addCheck = createAsyncThunk(
-//   "posts/addCheck",
-//   async (checkData, thunkAPI) => {
-//     console.log("checkAPI", checkData)
-//     try {
-//       const { data } = await axios.patch(
-//         `http://localhost:3001/posts/${checkData.id}`,
-//         checkData.data
-//       );
-//       return thunkAPI.fulfillWithValue(data);
-//     } catch (error) {
-//       return thunkAPI.rejectWithValue(error);
-//     }
-//   }
-// );
 
 /** 게시글 추가 Thunk */
 export const __addPosts = createAsyncThunk(
@@ -29,10 +14,8 @@ export const __addPosts = createAsyncThunk(
   async (postData, thunkAPI) => {
     console.log("ps", postData);
     try {
-      const { data } = await axios.post(
-        "http://localhost:3001/posts/",
-        postData
-      );
+      const { data } = await Api.post("/posts", postData);
+      console.log("data", data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -45,7 +28,7 @@ export const __getPosts = createAsyncThunk(
   "posts/getPosts",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/posts");
+      const { data } = await Api.get("/posts");
       console.log(typeof data.travel);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
@@ -59,7 +42,7 @@ export const __editPosts = createAsyncThunk(
   "posts/editPosts",
   async (postId, thunkAPI) => {
     try {
-      const { data } = await axios.put(
+      const { data } = await axios.patch(
         `http://localhost:3001/posts/${postId.id}`,
         postId
       );

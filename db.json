@@ -1,101 +1,69 @@
 {
   "posts": [
     {
-      "title": "제주도여행2",
-      "travel": "0",
-      "completion": false,
-      "id": 1
-    },
-    {
-      "title": "일본 여행 준비",
+      "title": "asdasd",
       "travel": "1",
       "completion": false,
-      "id": 2
-    },
-    {
-      "title": "강릉여행 체크리스트",
-      "travel": "0",
-      "completion": false,
-      "id": 3
-    },
-    {
-      "title": "부산 여행",
-      "travel": "0",
-      "completion": false,
-      "id": 4
-    },
-    {
-      "title": "ㅁㄴㅇㅁㄴㅇ",
-      "travel": "0",
-      "completion": false,
-      "id": 5
+      "formData": {},
+      "id": 1
     }
   ],
   "comments": [],
-  "checkList": [
-    {
-      "content": "여권",
-      "isDone": true,
-      "postId": 1,
-      "id": 1
-    },
-    {
-      "content": "책",
-      "isDone": false,
-      "postId": 1,
-      "id": 2
-    },
-    {
-      "content": "환전한 돈",
-      "isDone": true,
-      "postId": 1,
-      "id": 5
-    },
-    {
-      "content": "신분증",
-      "isDone": true,
-      "postId": 1,
-      "id": 6
-    },
-    {
-      "content": "ㅁㄴㅇㅁㄴㅇ",
-      "isDone": false,
-      "postId": 2,
-      "id": 7
-    },
-    {
-      "content": "ㅁㄴㅁㅇㄴ",
-      "isDone": true,
-      "postId": 3,
-      "id": 8
-    },
-    {
-      "content": "ㅁㄴㅇㅁㄴㅇ",
-      "isDone": true,
-      "postId": 4,
-      "id": 9
-    }
-  ],
+  "checkList": [],
   "sharings": [
     {
       "1": "",
       "id": 1
     },
     {
-      "postId": 1,
+      "1": "",
+      "id": 1
+    },
+    {
+      "1": "",
+      "id": 1
+    }
+  ],
+  "users": [
+    {
+      "userId": "wwww",
+      "nickname": "wwww",
+      "password": "wwww",
+      "id": 1
+    },
+    {
+      "userId": "test123@gmail.com",
+      "nickname": "김혁진이다",
+      "password": "rlagurwls!!",
       "id": 2
     },
     {
-      "postId": 1,
+      "userId": "test124@gmail.com",
+      "nickname": "긍정김입니다",
+      "password": "rlagurwls1!",
       "id": 3
     },
     {
-      "postId": 1,
+      "email": "test124@gmail.com",
+      "password": "rlagurwls1!",
       "id": 4
     },
     {
-      "postId": 1,
+      "email": "test124@gmail.com",
+      "password": "rlagurwls1!",
       "id": 5
+    },
+    {
+      "email": "test2@gmail.com",
+      "password": "pw1111",
+      "id": 6
+    },
+    {
+      "email": "test4@gmail.com",
+      "nickname": "김혁진이다",
+      "password": "rlagurwls1!",
+      "confirm": "rlagurwls1!",
+      "id": 7
     }
   ]
 }

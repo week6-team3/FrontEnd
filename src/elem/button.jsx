@@ -23,7 +23,6 @@ const Btn = styled.button`
 `;
 
 export const size1 = css`
-   
     width: 7rem;
     height: 4rem;
     background-color: #293991;
@@ -35,30 +34,24 @@ export const size1 = css`
     }
 `;
 export const size2 = css`
-    background-color: #FDC676;
-    min-width: 40px;
-    min-height:30px;
-    width: 13%;
-    height: 10%;
-    border-radius: 5px;
+    width: 7rem;
+    height: 4rem;
+    background-color: #293991;
+    color: white;
     border: none;
-    margin-left: 10px;
+    border-radius: 5px;
     &:hover{
-    background-color: #f7be67;
+        background-color: #1b2661;
     }
-    cursor: pointer;
 `;
 export const size3 = css`
-  background-color: #FDC676;
-    min-width: 30px;
-    min-height:30px;
-    width: 13%;
-    height: 10%;
+   width: 7rem;
+    height: 4rem;
+    background-color: #293991;
+    color: #ffffff;
+    border: 2px solid white;
     border-radius: 5px;
-    border: none;
-    margin-left: 10px;
     &:hover{
-    background-color: #f7be67;
+        background-color: #1b2661;
     }
-    cursor: pointer;
 `;

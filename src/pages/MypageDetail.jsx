@@ -141,7 +141,6 @@ const MypageDetail = () => {
                         <CheckListWrap>
                             <AddCheckForm />
                             <CheckList />
-
                         </CheckListWrap>
                         <Btn onClick={sharePost}>공유하기</Btn>
                     </DetailBox>
@@ -158,7 +157,7 @@ const Container = styled.div`
     
     box-shadow: 3px 5px 5px 1px gray;
     width: 100%;
-    height: 75rem;
+    height: 73rem;
     background-color: #F9EBD7 ;
     padding: 20px;
 `
@@ -202,7 +201,9 @@ const CheckListWrap = styled.div`
     height: 55rem;
     padding:20px;
     border: 1px solid #293991;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     /* background-color: #293991; */
     
 `
