@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { __getPosts } from '../redux/modules/postsSlice'
+import { __detailPosts, __getPosts } from '../redux/modules/postsSlice'
 
 import Categorie from '../components/Categorie'
 import Footer from '../components/Footer'
@@ -20,6 +20,10 @@ const Mypage = () => {
     useEffect(() => {
         dispatch(__getPosts());
     }, [dispatch])
+    useEffect(() => {
+        dispatch(__detailPosts());
+    }, [dispatch])
+
 
     return (
         <>

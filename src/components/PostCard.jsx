@@ -4,18 +4,25 @@ import { useNavigate } from 'react-router-dom';
 
 
 import styled from 'styled-components';
-import { __editPosts } from '../redux/modules/postsSlice';
+import { __detailPosts, __editPosts } from '../redux/modules/postsSlice';
 
 const PostCard = ({ post }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
+    console.log('pst', post)
 
 
     const onEditHandler = () => {
         dispatch(__editPosts({ id: post.id, completion: !post.completion }))
     }
 
+
+    const onDetailPage = () => {
+        dispatch(__detailPosts({ postId: post.postId }))
+        navigate(`/my_detail/${post.postId}`)
+        console.log("postId1", post.postId)
+    }
 
     return (
         <Card>
@@ -24,11 +31,11 @@ const PostCard = ({ post }) => {
                 <div>{post?.travel === "0" ? <div id="p1">해외여행</div> : <div id="p2">국내여행</div>}</div>
             </TextBox>
             <BtnBox>
-                <button onClick={() => navigate(`/my_detail/${post.id}`)}>둘러보기</button>
+                <button onClick={onDetailPage}>둘러보기</button>
                 <button onClick={onEditHandler}>{post?.completion ? '취소' : '완료'}</button>
             </BtnBox>
 
-        </Card>
+        </Card >
     );
 }
 export default PostCard

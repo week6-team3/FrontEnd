@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { __getCheckList } from '../../redux/modules/checkListSlice'
+import { __detailPosts } from '../../redux/modules/postsSlice'
 import Checks from './Checks'
 
 
@@ -12,12 +13,14 @@ const CheckList = () => {
     const { id } = useParams()
     const dispatch = useDispatch()
     const { checkList } = useSelector(state => state.checkList)
-
+    console.log("postID는?", id)
 
     useEffect(() => {
         dispatch(__getCheckList())
     }, [dispatch])
-
+    useEffect(() => {
+        dispatch(__detailPosts());
+    }, [dispatch])
 
 
     return (

@@ -28,6 +28,21 @@ const Categorie = () => {
 
     return (
         <SubHeader>
+            <Airplane class="cities">
+                <div class="city">
+                    <small>Milano</small>
+
+                    <strong>LIN</strong>
+                </div>
+                <div class="city">
+                    <small>Paris</small>
+
+                    <strong>ORY</strong>
+                </div>
+                <svg class="airplane">
+                    <use href="#airplane"></use>
+                </svg>
+            </Airplane>
             <Button id="btn" size='size2' onClick={createSubmit} >
                 게시글 작성
             </Button>
@@ -53,3 +68,45 @@ const SubHeader = styled.div`
         margin-right: 3rem;
     }
     `
+
+const Airplane = styled.section`
+    .cities {
+    position: relative;
+
+    &::after {
+      content: '';
+      display: table;
+      clear: both;
+    }
+
+    .city {
+      padding: 20px 18px;
+      float: left;
+
+      &:nth-child(2) {
+        float: right;
+      }
+
+      strong {
+        font-size: 40px;
+        font-weight: 300;
+        line-height: 1;
+      }
+
+      small {
+        margin-bottom: 0px;
+        margin-left: 3px;
+      }
+    }
+    .airplane {
+      position: absolute;
+      width: 30px;
+      height: 25px;
+      top: 57%;
+      left: 30%;
+      opacity: 0;
+      transform: translate(-50%, -50%);
+      animation: move 4s infinite;
+    }
+}
+`

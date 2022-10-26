@@ -18,6 +18,7 @@ const AddCheckForm = () => {
         isDone: false,
         postId: +id,
     }
+
     const [check, setCheck] = useState(intialstate);
 
     const onChangHandler = (e) => {
@@ -37,7 +38,7 @@ const AddCheckForm = () => {
         dispatch(__addCheckList({ ...check }))
         setCheck(intialstate)
     }
-    console.log("check", check)
+
 
 
     return (
