@@ -26,7 +26,8 @@ const MypageDetail = () => {
 
     const { id } = useParams();
     const { posts } = useSelector((state) => state.posts);
-    const post = posts.find((post) => post?.id === +id)
+    console.log("posts", posts)
+    const post = posts.find((post) => post?.postId === +id)
     console.log("po", post)
     const cookie = getCookieToken('AccessToken')
 
@@ -40,9 +41,9 @@ const MypageDetail = () => {
         dispatch(__getPosts())
     }, [dispatch])
 
-    useEffect(() => {
-        dispatch(__detailPosts(+id));
-    }, [dispatch, id])
+    // useEffect(() => {
+    //     dispatch(__detailPosts(+id));
+    // }, [dispatch, id])
 
     useEffect(() => {
         if (!cookie) {
@@ -147,7 +148,7 @@ const MypageDetail = () => {
                                 {!isEdit ? <div><h1>{post?.title}</h1></div> : null}
                                 {isEdit ?
                                     <div>
-                                        <input type="text" value={editPost.title} onChange={(e) => { setEditPost({ ...editPost, title: e.target.value }) }} />
+                                        <input type="text" value={editPost?.title} onChange={(e) => { setEditPost({ ...editPost, title: e.target.value }) }} />
                                         <Button size="size1" onClick={onEditHandler} >저장</Button>
                                     </div>
                                     : null}
@@ -225,7 +226,6 @@ const CheckListWrap = styled.div`
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     /* background-color: #293991; */
-    
 `
 
 

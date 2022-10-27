@@ -1,62 +1,41 @@
-import React, { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-
 import styled from 'styled-components';
-import { __detailPosts, __editPosts, __getPosts } from '../redux/modules/postsSlice';
 
-const PostCard = ({ post }) => {
-    const dispatch = useDispatch()
+const ShareCard = ({ share }) => {
     const navigate = useNavigate();
 
-    console.log("editPost", post)
-
-
-    const onEditHandler = () => {
-        dispatch(__editPosts({ postId: post?.postId }))
-    }
-
-
-    // const onDetailPage = () => {
-    //     dispatch(__detailPosts({ postId: post.postId }))
-    //     navigate(`/my_detail/${post.postId}`)
-
-    // }
+    const { posts } = useSelector(state => state.posts);
+    
+    // const post = posts.find((post) => post.id === share.postId)
+    const post = posts.find((post) => post.postId === share.postId)
+    console.log(posts)
 
     return (
         <Card>
             <TextBox>
-                <div id="d1">{post?.title}</div>
+                <p>{post?.title}</p>
                 <div>{post?.travel === "0" ? <div id="p1">해외여행</div> : <div id="p2">국내여행</div>}</div>
             </TextBox>
-            <BtnBox>
-                {/* <button onClick={onDetailPage}>둘러보기</button> */}
-                <button onClick={() => navigate(`/my_detail/${post.postId}`)}>둘러보기</button>
-                <button onClick={onEditHandler}>{post?.completion ? '취소' : '완료'}</button>
-            </BtnBox>
-
-        </Card >
+            <button onClick={() => navigate(`/home_detail/${share.postId}`)}>둘러보기</button>
+        </Card>
     );
 }
-export default PostCard
+export default ShareCard
 
 const Card = styled.div`
     display:flex;
     flex-direction: column;
-    flex-wrap: nowrap;
     justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: nowrap;
 
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) , url('https://picsum.photos/536/354');
     background-repeat : no-repeat;
     background-position: center;
     background-size: 20rem 28rem;
-    
-    transition: all 0.2s linear;
-    &:hover{
-        transform: scale(1.1);
-
-    }
     
     width: 20rem;
     height: 28rem;
@@ -65,7 +44,7 @@ const Card = styled.div`
     button{
         width: 8rem;
         height: 4rem;
-        background-color: #ffffffb8;
+        background-color: white;
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -76,13 +55,9 @@ const Card = styled.div`
 
 `
 const TextBox = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    align-content: flex-start;
     color: white;
     
-    #d1{
+    p{
         font-size:2.5rem;
         margin-bottom: 1rem;
     }
@@ -114,27 +89,3 @@ const TextBox = styled.div`
     }
 
 `
-
-const BtnBox = styled.div`
-    display:flex;
-    gap: 15px;
-`
-
-
-
-
-
-
-
-
-
-
-// import React from 'react'
-
-// const PostCard = () => {
-//     return (
-//         <div>PostCard</div>
-//     )
-// }
-
-// export default PostCard

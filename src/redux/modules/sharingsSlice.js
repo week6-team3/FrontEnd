@@ -2,9 +2,26 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import Api from "../../shared/Api";
 
+
 const initialState = {
   sharings: [],
 };
+
+
+export const __getSharePost = createAsyncThunk(
+  "sharings/getSharePost",
+  async (payload, thunkAPI) => {
+    console.log("payload", payload)
+    try {
+      const { data } = await Api.get(
+        "/sharings"
+        );
+      return thunkAPI.fulfillWithValue(data);
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
 
 export const __sharePost = createAsyncThunk(
   "sharings/sharePost",
@@ -37,7 +54,13 @@ const sharingsSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: {
-    /**Share 요청하기 */
+    /**share 조회하기 **/
+    [__getSharePost.fulfilled]: (state, action) => {
+      state.isLoading = true;
+      state.sharings = action.payload
+    },
+
+    /**Share 요청하기 **/
     [__sharePost.fulfilled]: (state, action) => {
       state.sharings.push(action.payload);
     },

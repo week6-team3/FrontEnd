@@ -13,6 +13,7 @@ import Swal from 'sweetalert2'
 const AddCheckForm = () => {
     const dispatch = useDispatch()
     const { id } = useParams()
+    console.log("에엥", id)
     const intialstate = {
         content: "",
         isDone: false,
@@ -38,8 +39,6 @@ const AddCheckForm = () => {
         dispatch(__addCheckList({ ...check }))
         setCheck(intialstate)
     }
-
-
 
     return (
         <CheckForm>

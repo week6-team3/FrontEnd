@@ -62,18 +62,19 @@ export const __deletePosts = createAsyncThunk(
   }
 );
 
-/** 게시글 상세보기 조회 Thunl */
-export const __detailPosts = createAsyncThunk(
-  "posts/detailPosts",
-  async (postId, thunkAPI) => {
-    try {
-      await Api.get(`/posts/${postId}`);
-      return thunkAPI.fulfillWithValue(postId);
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error);
-    }
-  }
-);
+// /** 게시글 상세보기 조회 Thunl */
+// export const __detailPosts = createAsyncThunk(
+//   "posts/detailPosts",
+//   async (postId, thunkAPI) => {
+//     console.log("detail", postId);
+//     try {
+//       await Api.get(`/posts/${postId}`);
+//       return thunkAPI.fulfillWithValue(postId);
+//     } catch (error) {
+//       return thunkAPI.rejectWithValue(error);
+//     }
+//   }
+// );
 
 const postsSlice = createSlice({
   name: "posts",
@@ -133,19 +134,19 @@ const postsSlice = createSlice({
       state.isLoading = false;
       state.posts = action.payload;
     },
-    /**게시글 상세 조회 */
-    [__detailPosts.pending]: (state) => {
-      state.isLoading = true;
-    },
-    [__detailPosts.fulfilled]: (state, action) => {
-      console.log("action", action);
-      state.isLoading = false;
-      state.posts = action.payload;
-    },
-    [__detailPosts.rejected]: (state, action) => {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
+    // /**게시글 상세 조회 */
+    // [__detailPosts.pending]: (state) => {
+    //   state.isLoading = true;
+    // },
+    // [__detailPosts.fulfilled]: (state, action) => {
+    //   console.log("action", action);
+    //   state.isLoading = false;
+    //   state.posts = action.payload;
+    // },
+    // [__detailPosts.rejected]: (state, action) => {
+    //   state.isLoading = false;
+    //   state.error = action.payload;
+    // },
   },
 });
 

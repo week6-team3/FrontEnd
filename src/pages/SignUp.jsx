@@ -59,22 +59,29 @@ const SignUp = () => {
               <p>나만의 체크리스트를 위한 로그인</p>
             </TitleBox>
             <SignUpWrap onSubmit={handleSubmit(onSubmit)}>
-              <p>회원가입</p>
+              <p>이메일</p>
               <input
                 placeholder='이메일을 입력하세요'
-                {...register("email")}
+                {...register("email",
+                  {
+                    required: "Email is required", pattern: /^[A-Za-z0-9]([-_\.]?[0-9a-zA-z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-z])*\.[a-zA-z]{2,3}$/,
+                  }
+                )}
               />
-              <p>0</p>
+              {errors.email && errors.email.type === "pattern" && <p className='p2'> 이메일 형식이 아닙니다. </p>}
+              <p>닉네임</p>
               <input
-                placeholder='닉네임을 입력하세요'
-                {...register("nickname")}
+                placeholder='영문 숫자 조합 4글자 10글자 사이 입력하세요'
+                {...register("nickname", { required: "nickname is required", pattern: /^[A-Za-z0-9]{4, 10}$/ })}
               />
-              <p>0</p>
+              {errors.nickname && errors.nickname.type === "pattern" && <p className='p2'>영문 숫자 조합 4글자 10글자 사이 입력하세요. </p>}
+              <p>패스워드</p>
               <input
-                placeholder='비밀번호를 입력하세요'
+                placeholder='비밀번호 4~16 영대문자, 숫자를 입력하세요'
                 type="password"
-                {...register("password")}
+                {...register("password", { required: "Password is required", pattern: /^[a-zA-Z0-9]{4,16}$/ })}
               />
+              {errors.password && errors.password.type === "pattern" && <p className='p2'>비밀번호 4~16 영대문자, 숫자를 입력하세요. </p>}
               <input
                 placeholder='비밀번호를 한번 더 입력하세요'
                 type="password"
@@ -144,5 +151,19 @@ const SignUpWrap = styled.form`
     input{
       height: 5rem;
       width: 100%;
+      border: none;
+      border-bottom: 3px solid #293991;
+      border-right: 3px solid #293991;
+      background-color: #F9EBD7;
+      font-size:1.5rem;
+    }
+    p{
+      font-size:2rem;
+      margin-top: 3rem;
+    }
+    .p2{
+      
+      font-size:1.2rem;
+      color: red;
     }
 `
