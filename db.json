@@ -1,69 +1,68 @@
 {
   "posts": [
     {
-      "title": "asdasd",
-      "travel": "1",
-      "completion": false,
-      "formData": {},
+      "title": "ㅗㅗ",
+      "travel": "0",
       "id": 1
+    },
+    {
+      "title": "ㅇㄴㄹ",
+      "travel": "0",
+      "id": 2
     }
   ],
-  "comments": [],
-  "checkList": [],
   "sharings": [
     {
-      "1": "",
-      "id": 1
-    },
-    {
-      "1": "",
-      "id": 1
-    },
-    {
-      "1": "",
+      "postId": "1",
       "id": 1
     }
   ],
-  "users": [
+  "comments": [
     {
-      "userId": "wwww",
-      "nickname": "wwww",
-      "password": "wwww",
+      "content": "ㅗㅗㅗ",
+      "postId": null,
       "id": 1
     },
     {
-      "userId": "test123@gmail.com",
-      "nickname": "김혁진이다",
-      "password": "rlagurwls!!",
+      "content": "dsa",
+      "postId": null,
       "id": 2
     },
     {
-      "userId": "test124@gmail.com",
-      "nickname": "긍정김입니다",
-      "password": "rlagurwls1!",
+      "content": "??",
+      "postId": null,
       "id": 3
     },
     {
-      "email": "test124@gmail.com",
-      "password": "rlagurwls1!",
+      "content": "?",
+      "postId": null,
       "id": 4
     },
     {
-      "email": "test124@gmail.com",
-      "password": "rlagurwls1!",
+      "content": "?",
+      "postId": null,
       "id": 5
-    },
-    {
-      "email": "test2@gmail.com",
-      "password": "pw1111",
-      "id": 6
-    },
-    {
-      "email": "test4@gmail.com",
-      "nickname": "김혁진이다",
-      "password": "rlagurwls1!",
-      "confirm": "rlagurwls1!",
-      "id": 7
     }
-  ]
+  ],
+  "checkList": [
+    {
+      "content": "ㅗㅗㅗ",
+      "isDone": "false",
+      "postId": "1",
+      "id": 1
+    },
+    {
+      "content": "ㄴㅇㅎ",
+      "isDone": "false",
+      "postId": "2",
+      "id": 2
+    },
+    {
+      "content": "ㅋㅋ",
+      "isDone": "false",
+      "postId": "2",
+      "id": 3
+    }
+  ],
+  "isMyLike": []
 }

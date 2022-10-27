@@ -12,38 +12,23 @@ const Categorie = () => {
 
     const navigate = useNavigate()
 
-    const createSubmit = (e) => {
-        e.preventDefault()
-        if (getCookieToken('AccessToken') !== undefined) {
-            navigate('/create/add')
-        } else {
-            Swal.fire(
-                '로그인 해주세요!',
-                '로그인 후 이용 가능합니다!',
-                'warning'
-            )
-            navigate('/users/login')
-        }
-    }
+    // const createSubmit = (e) => {
+    //     e.preventDefault()
+    //     if (getCookieToken('AccessToken') !== undefined) {
+    //         navigate('/create/add')
+    //     } else {
+    //         Swal.fire(
+    //             '로그인 해주세요!',
+    //             '로그인 후 이용 가능합니다!',
+    //             'warning'
+    //         )
+    //         navigate('/users/login')
+    //     }
+    // }
 
     return (
         <SubHeader>
-            <Airplane class="cities">
-                <div class="city">
-                    <small>Milano</small>
-
-                    <strong>LIN</strong>
-                </div>
-                <div class="city">
-                    <small>Paris</small>
-
-                    <strong>ORY</strong>
-                </div>
-                <svg class="airplane">
-                    <use href="#airplane"></use>
-                </svg>
-            </Airplane>
-            <Button id="btn" size='size2' onClick={createSubmit} >
+            <Button id="btn" size='size2' onClick={()=>navigate('/create/add')} >
                 게시글 작성
             </Button>
         </SubHeader>

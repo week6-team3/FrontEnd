@@ -16,6 +16,7 @@ const Mypage = () => {
     // const { id } = useParams();
 
     const { posts } = useSelector((state) => state.posts)
+    console.log("posts", posts)
 
     useEffect(() => {
         dispatch(__getPosts());

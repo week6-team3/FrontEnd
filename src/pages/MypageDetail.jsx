@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { __addCheck, __deletePosts, __editPosts, __getPosts } from '../redux/modules/postsSlice'
+import { __addCheck, __deletePosts, __detailPosts, __editPosts, __getPosts } from '../redux/modules/postsSlice'
 
 import Footer from '../components/Footer'
 import Header from '../components/Header'
@@ -27,6 +27,8 @@ const MypageDetail = () => {
     const { posts } = useSelector((state) => state.posts);
     const post = posts.find((post) => post.id === +id)
     console.log("po", post)
+    console.log("id", id)
+    console.log("posts", posts)
 
     const [isEdit, setIsEdit] = useState(false)
     const [editPost, setEditPost] = useState({
@@ -38,9 +40,9 @@ const MypageDetail = () => {
         dispatch(__getPosts())
     }, [dispatch])
 
-    useEffect(() => {
-        dispatch(__getPosts());
-    }, [dispatch])
+    // useEffect(() => {
+    //     dispatch(__detailPosts(+id));
+    // }, [dispatch,id])
 
 
     const onDeleteHandler = (e) => {
@@ -61,7 +63,7 @@ const MypageDetail = () => {
                     '게시글이 삭제 되었어요!',
                     'success'
                 )
-                navigate("/mypage/:id")
+                navigate("/mypage")
             }
         })
     }
@@ -92,7 +94,7 @@ const MypageDetail = () => {
             confirmButtonText: 'Share'
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(__sharePost({ postId: post.id }))
+                dispatch(__sharePost({ postId: +id }))
                 Swal.fire(
                     '공유 완료!',
                     '게시글이 공유 되었어요!',
@@ -210,7 +212,6 @@ const CheckListWrap = styled.div`
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     /* background-color: #293991; */
-    
 `
 
 

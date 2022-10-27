@@ -25,6 +25,7 @@ const Create = () => {
         travel: "0",
 
         // checkList: [],
+        
 
     }
 
@@ -64,7 +65,7 @@ const Create = () => {
         if (post.title.trim() === "") return;
         dispatch(__addPosts({ ...post }))
         setPost(initialstate)
-        navigate("/mypage/:id")
+        navigate("/mypage")
     }
 
 

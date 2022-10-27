@@ -53,12 +53,12 @@ const Header = () => {
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
                             <span onClick={()=> navigate('/')}>나 두고 갈거야..?</span>
                         </Typography>
-                        <HeaderBar>
+                        {/* <HeaderBar>
                         {getCookieToken('AccessToken') !== undefined ? 
                             <Button size="size3" onClick={onHandleSignOut} >로그아웃</Button> : <Button size="size2" onClick={()=> navigate('/users/login')} >로그인</Button>}
                         {getCookieToken('AccessToken') !== undefined ? 
-                            <Button size="size3" onClick={()=> navigate('/mypage/:id')} >마이페이지</Button> : <Button size="size2" onClick={()=> navigate('/users/sign_up')} >회원가입</Button>}
-                        </HeaderBar>
+                            <Button size="size3" onClick={()=> navigate('/mypage')} >마이페이지</Button> : <Button size="size2" onClick={()=> navigate('/users/sign_up')} >회원가입</Button>}
+                        </HeaderBar> */}
                     </Toolbar>
                 </AppBar>
             </BarWrap>
