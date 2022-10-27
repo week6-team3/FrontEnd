@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 
 import Footer from '../components/Footer'
@@ -9,12 +9,15 @@ import Layout from '../components/Layout'
 import styled from 'styled-components'
 import Categorie from '../components/Categorie'
 
-import CommentList from '../features/comments/CommentList'
-import Likes from '../features/comments/Likes'
+
 import { __getSharePost } from '../redux/modules/sharingsSlice'
 import { __getCheckList } from '../redux/modules/checkListSlice'
 import Checks from '../features/checks/Checks'
-import { Share } from '@material-ui/icons'
+// import { Share } from '@material-ui/icons'
+import AddCommentForm from '../features/comments/AddCommentForm'
+import CommentList from '../features/comments/CommentList'
+import _CommentList from '../features/comments/_CommentList'
+
 
 
 const HomeDetail = () => {
@@ -30,12 +33,13 @@ const HomeDetail = () => {
     const { sharings } = useSelector((state) => state.sharings)
     console.log("셰어", sharings)
 
-    // const share = sharings?.find((share) => share.postId === Number(id))
-    // console.log("진짜셰어",share)
+    // 2차 추가
+    const { comments } = useSelector((state) => state.comments);
+    
 
     useEffect(() => {
         dispatch(__getCheckList());
-    }, [dispatch])
+    }, [dispatch, +id])
 
     useEffect(() => {
         dispatch(__getSharePost());
@@ -50,16 +54,18 @@ const HomeDetail = () => {
                     <Container>
                         <DetailBox>
                         <TitleBox> 이거 챙겨야지~! </TitleBox>
-                        
                         <StListBox>
                             <h1> 😎 챙길 목록 </h1>
                             <div>
                                 {checkList.map((check) => check.postId === Number(id) ?
                                 <Checks isHome={true} key={check.id} check={check} /> : null)}
-                        </div>
+                            </div>
                         </StListBox>
-                    <CommentList/>
-                    <Likes/>
+                        <div>
+                        <AddCommentForm/>
+                        <CommentList id={id}/>
+                        <_CommentList/>
+                        </div>
                     </DetailBox>
                 </Container>
                 <Footer />
@@ -101,7 +107,7 @@ const DetailBox = styled.div`
     padding:20px;
     /* border: 1px solid #293991; */
     margin-bottom: 4rem;
-    overflow-x: auto; //스크롤생김
+    overflow-x: hidden;
     &::-webkit-scrollbar{
     width: 7px
     }

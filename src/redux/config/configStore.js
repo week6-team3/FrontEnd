@@ -3,7 +3,6 @@ import posts from "../modules/postsSlice";
 import checkList from "../modules/checkListSlice";
 import sharings from "../modules/sharingsSlice";
 import comments from "../modules/commentsSlice";
-import likes from "../modules/likesSlice";
 
 
 import logger from "redux-logger";
@@ -15,7 +14,6 @@ const store = configureStore({
     checkList,
     sharings,
     comments,
-    likes,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({ serializableCheck: false }).concat(logger),

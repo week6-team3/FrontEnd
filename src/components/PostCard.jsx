@@ -1,20 +1,42 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 
 import styled from 'styled-components';
+import { __detailPosts, __editPosts } from '../redux/modules/postsSlice';
 
 const PostCard = ({ post }) => {
+    const dispatch = useDispatch()
     const navigate = useNavigate();
+
+    console.log('pst', post)
+
+
+    const onEditHandler = () => {
+        dispatch(__editPosts({ id: post.id, completion: !post.completion }))
+    }
+
+
+    // const onDetailPage = () => {
+    //     dispatch(__detailPosts({ postId: post.postId }))
+    //     navigate(`/my_detail/${post.postId}`)
+    //     console.log("postId1", post.postId)
+    // }
 
     return (
         <Card>
             <TextBox>
-                <p>{post?.title}</p>
+                <div id="d1">{post?.title}</div>
                 <div>{post?.travel === "0" ? <div id="p1">해외여행</div> : <div id="p2">국내여행</div>}</div>
             </TextBox>
-            <button onClick={() => navigate(`/my_detail/${post.id}`)}>둘러보기</button>
-        </Card>
+            <BtnBox>
+                {/* <button onClick={onDetailPage}>둘러보기</button> */}
+                <button onClick={()=> navigate(`/my_detail/${post.id}`)}>둘러보기</button>
+                <button onClick={onEditHandler}>{post?.completion ? '취소' : '완료'}</button>
+            </BtnBox>
+
+        </Card >
     );
 }
 export default PostCard
@@ -22,20 +44,19 @@ export default PostCard
 const Card = styled.div`
     display:flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
     flex-wrap: nowrap;
+    justify-content: space-between;
 
     background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)) , url('https://picsum.photos/536/354');
     background-repeat : no-repeat;
     background-position: center;
     background-size: 20rem 28rem;
-    /* overflow: hidden;
+    
     transition: all 0.2s linear;
     &:hover{
-        transform: scale(1.2);
+        transform: scale(1.1);
 
-    } */
+    }
     
     width: 20rem;
     height: 28rem;
@@ -44,7 +65,7 @@ const Card = styled.div`
     button{
         width: 8rem;
         height: 4rem;
-        background-color: white;
+        background-color: #ffffffb8;
         border: none;
         border-radius: 5px;
         cursor: pointer;
@@ -55,9 +76,13 @@ const Card = styled.div`
 
 `
 const TextBox = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    align-content: flex-start;
     color: white;
     
-    p{
+    #d1{
         font-size:2.5rem;
         margin-bottom: 1rem;
     }
@@ -88,6 +113,11 @@ const TextBox = styled.div`
         border-radius:5px;
     }
 
+`
+
+const BtnBox = styled.div`
+    display:flex;
+    gap: 15px;
 `
 
 

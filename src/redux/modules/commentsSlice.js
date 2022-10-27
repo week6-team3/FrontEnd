@@ -1,12 +1,13 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 import _default from "react-redux/es/components/connect";
+import Api from "../../shared/Api";
 
 // 조회
 export const __getComments = createAsyncThunk("comments/getCheckList",
   async (payload, thunkAPI) => {
     try {
-      const { data } = await axios.get("http://localhost:3001/comments");
+      const { data } = await Api.get("/comments");
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -18,7 +19,7 @@ export const __addComments = createAsyncThunk("comments/addCheckList",
   async (commentData, thunkAPI) => {
     console.log("추가",commentData)
     try {
-      const { data } = await axios.post("http://localhost:3001/comments", commentData);
+      const { data } = await Api.post("/comments", commentData); //바디로 보낸거
     return thunkAPI.fulfillWithValue(data);
     // 예외처리(에러잡는거)
   } catch (error) {
@@ -32,7 +33,7 @@ export const __deleteComments = createAsyncThunk("comments/deleteCheckList",
   async (commentId, thunkAPI) => {
     console.log("삭제", commentId)
     try {
-      await axios.delete(`http://localhost:3001/comments/${commentId}`);
+      await Api.delete(`/comments/${commentId}`); //파람으로 보낸거
       
       return thunkAPI.fulfillWithValue(commentId);
   } catch (error) {
@@ -46,7 +47,7 @@ export const __upDateComments = createAsyncThunk("comments/upDateCheckList",
   async (commentId, thunkAPI) => {
     console.log("수정", commentId)  
     try {
-      const { data } = await axios.patch(`http://localhost:3001/comments/${commentId.id}`, commentId);
+      const { data } = await Api.patch(`/comments/${commentId.id}`, commentId);
       
       return thunkAPI.fulfillWithValue(data);
   } catch (error) {

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { __addCheck, __deletePosts, __editPosts, __getPosts } from '../redux/modules/postsSlice'
+import { __addCheck, __deletePosts, __detailPosts, __editPosts, __getPosts } from '../redux/modules/postsSlice'
 
 import Footer from '../components/Footer'
 import Header from '../components/Header'
@@ -27,6 +27,8 @@ const MypageDetail = () => {
     const { posts } = useSelector((state) => state.posts);
     const post = posts.find((post) => post.id === +id)
     console.log("po", post)
+    console.log("id", id)
+    console.log("posts", posts)
 
     const [isEdit, setIsEdit] = useState(false)
     const [editPost, setEditPost] = useState({
@@ -37,6 +39,11 @@ const MypageDetail = () => {
     useEffect(() => {
         dispatch(__getPosts())
     }, [dispatch])
+
+    // useEffect(() => {
+    //     dispatch(__detailPosts(+id));
+    // }, [dispatch,id])
+
 
     const onDeleteHandler = (e) => {
         e.stopPropagation()
@@ -56,7 +63,7 @@ const MypageDetail = () => {
                     '게시글이 삭제 되었어요!',
                     'success'
                 )
-                navigate("/mypage/:id")
+                navigate("/mypage")
             }
         })
     }
@@ -74,7 +81,7 @@ const MypageDetail = () => {
         dispatch(__editPosts({ ...post, ...editPost }))
         setIsEdit(false)
     }
-    console.log("share", post)
+
     const sharePost = (e) => {
         e.preventDefault()
         Swal.fire({
@@ -87,7 +94,7 @@ const MypageDetail = () => {
             confirmButtonText: 'Share'
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(__sharePost({ postId: post.id }))
+                dispatch(__sharePost({ postId: +id }))
                 Swal.fire(
                     '공유 완료!',
                     '게시글이 공유 되었어요!',
@@ -141,7 +148,6 @@ const MypageDetail = () => {
                         <CheckListWrap>
                             <AddCheckForm />
                             <CheckList />
-
                         </CheckListWrap>
                         <Btn onClick={sharePost}>공유하기</Btn>
                     </DetailBox>
@@ -158,7 +164,7 @@ const Container = styled.div`
     
     box-shadow: 3px 5px 5px 1px gray;
     width: 100%;
-    height: 75rem;
+    height: 73rem;
     background-color: #F9EBD7 ;
     padding: 20px;
 `
@@ -202,7 +208,9 @@ const CheckListWrap = styled.div`
     height: 55rem;
     padding:20px;
     border: 1px solid #293991;
-    margin-bottom: 4rem;
+    margin-bottom: 3rem;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     /* background-color: #293991; */
 `
 

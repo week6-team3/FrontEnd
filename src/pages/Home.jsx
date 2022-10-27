@@ -6,7 +6,7 @@ import Layout from '../components/Layout'
 import ShareCard from '../components/ShareCard'
 
 
-import Button from '@mui/material/Button';
+
 import Categorie from '../components/Categorie'
 import { useDispatch, useSelector } from 'react-redux'
 import { __getSharePost } from '../redux/modules/sharingsSlice'
@@ -27,8 +27,8 @@ const Home = () => {
     useEffect(() => {
         dispatch(__getPosts());
     }, [dispatch])
-    
-    
+
+
 
     return (
         <>
@@ -36,11 +36,6 @@ const Home = () => {
                 <Header />
                 <Categorie />
                 <Container>
-                    <BtnBox>
-                        <Button style={{ backgroundColor: "#293991" }} variant="contained" href="/create/add">
-                            게시글 작성
-                        </Button>
-                    </BtnBox>
                     <PostBox>
                     {sharings.map((share) => {
                     return <ShareCard key={share.id} share={share} />})}
@@ -71,10 +66,6 @@ const Container = styled.div`
     border-radius: 10px;
     }
     `
-const BtnBox = styled.div`
-    display:flex;
-    flex-direction: row-reverse;
-`
 
 const PostBox = styled.div`
     display: flex;
