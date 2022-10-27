@@ -12,8 +12,13 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    background-color: #FFE9AD;
-    overflow: hidden;
+    background-image: url('https://img.freepik.com/free-photo/airport-terminal_1417-1455.jpg?w=1380&t=st=1666604607~exp=1666605207~hmac=8d32bee1ca5c2879bab8a0a9af6bea1c19b84a3489350201069731408f2b5ead');
+    background-repeat : no-repeat;
+    background-position: center;
+    background-size: 100% 100%;
+   
+    
+    overflow: auto;
   }
 
   html {
