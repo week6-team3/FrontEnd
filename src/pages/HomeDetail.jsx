@@ -20,7 +20,7 @@ const HomeDetail = () => {
                 <Header />
                 <Categorie />
                 <Container>
-
+                   
                 </Container>
                 <Footer />
             </Layout>

@@ -14,29 +14,39 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import Swal from 'sweetalert2'
 import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from '@mui/material'
+import { getCookieToken } from '../shared/cookie'
 
 
 const Create = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const cookie = getCookieToken('AccessToken')
+
 
     const initialstate = {
         title: "",
         travel: "0",
-
-        // checkList: [],
-
     }
-
     const [post, setPost] = useState(initialstate)
     const [files, setFiles] = useState("");
+
+    useEffect(() => {
+        if (!cookie) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'warning',
+                title: '로그인을 해주세요!',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            navigate("/login");
+        }
+    }, [cookie, navigate]);
 
 
     const onLoadFile = (e) => {
         setFiles(e.target.files[0])
-        // console.log("up", e.target.files[0])
     }
-
 
 
     const onChangeHandler = (e) => {
@@ -64,7 +74,7 @@ const Create = () => {
         if (post.title.trim() === "") return;
         dispatch(__addPosts({ ...post }))
         setPost(initialstate)
-        navigate("/mypage/:id")
+        navigate("/mypage")
     }
 
 
@@ -79,30 +89,32 @@ const Create = () => {
                             <div>여행의 시작은?</div>
                         </TitleBox>
                         <CreateWrap>
-                            <div>
-                                <label>제목 :</label>
-                                <input name="title" value={post.title} type="text" onChange={onChangeHandler} />
-                            </div>
-                            <FormControl className='formContorol'>
-                                <FormLabel id="demo-radio-buttons-group-label">여행지를 선택해주세요!</FormLabel>
-                                <RadidGr>
+                            <BoxInBox>
+                                <InputBox>
+                                    <input name="title" maxLength='13' placeholder='여행의 이름을 정해주세요!' value={post.title} type="text" onChange={onChangeHandler} />
+                                </InputBox>
+                                <ChoiceBox>
                                     <RadioGroup className='rG'
                                         aria-labelledby="demo-radio-buttons-group-label"
                                         defaultValue="0"
-                                        name="radio-buttons-group"
-                                    >
-                                        <FormControlLabel name="travel" value="0" control={<Radio />} label="국내여행" onChange={onChangeHandler} />
-                                        <FormControlLabel name="travel" value="1" control={<Radio />} label="해외여행" onChange={onChangeHandler} />
+                                        name="radio-buttons-group">
+                                        <label>해외여행</label>
+                                        <FormControlLabel className='radio' name="travel" value="0" control={<Radio />} onChange={onChangeHandler} />
+                                        <label>국내여행</label>
+                                        <FormControlLabel className='radio' name="travel" value="1" control={<Radio />} onChange={onChangeHandler} />
                                     </RadioGroup>
-                                </RadidGr>
-                            </FormControl>
+                                </ChoiceBox>
+                            </BoxInBox>
+                            <BtnBox>
+                                <Button size="size2" variant="contained" onClick={postsSubmit}>작성</Button>
+                                <Button size="size2" variant="contained" onClick={() => navigate('/')}>취소</Button>
+                            </BtnBox>
                             {/* <div>
                                 <label htmlFor="file">이미지 선택하기</label>
                                 <input id="fileAdd" name="file" type="file" accept="image/*" onChange={onLoadFile} />
                                 <p>권장 이미지 크기 : ~~</p>
                                 <div id='imgPreview'></div>
                             </div> */}
-                            <Button size="size2" variant="contained" onClick={postsSubmit}>작성</Button>
                         </CreateWrap>
                     </CreatBox>
 
@@ -117,24 +129,16 @@ export default Create
 
 const Container = styled.div`
     box-shadow: 3px 5px 5px 1px gray;
-    
     width: 100%;
     height: 70rem;
     background-color: #F9EBD7 ;
     padding: 30px;
     
-
     .formContorol{
         align-items: center;
     }
 `
-const RadidGr = styled.form`
-    .rG{
-        display:flex;
-        flex-direction: row;
-    }
-    
-`
+
 
 const CreatBox = styled.form`
     display:flex;
@@ -145,6 +149,13 @@ const CreatBox = styled.form`
     width: 40rem;
     height: 64rem;
     margin: auto;
+`
+
+const BoxInBox = styled.div`
+    /* border: 2px solid #293991; */
+    width: 30rem;
+    height: 20rem;
+    margin:auto;
 `
 
 
@@ -160,6 +171,8 @@ const TitleBox = styled.div`
     border: 1px solid #293991;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
+
+    font-size: 2.5rem;
 `
 const CreateWrap = styled.div`
     display:flex;
@@ -167,12 +180,63 @@ const CreateWrap = styled.div`
     align-items: center;
     width:100%;
     height: 55rem;
-    padding:20px;
-    gap: 3rem;
+    padding:40px;
     border: 1px solid #293991;
-    margin-bottom: 3rem;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     /* background-color: #293991; */
     
+`
+
+const InputBox = styled.div`
+    display:flex;
+    width: 30rem;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    
+
+    input{
+        font-size:2rem;
+        border: none;
+        border-bottom: 2px solid #293991;
+        border-right: 2px solid #293991;
+        background-color: #F9EBD7;
+        /* box-shadow: 1px 2px 2px 1px #293991; */
+
+        width: 100%;
+        height: 4rem;
+        &:hover{
+            box-shadow: 1px 2px 2px 1px #293991;
+        }
+    }
+`
+
+const ChoiceBox = styled.div`
+    font-size:1.8rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top:30px;
+    
+    width: 30rem;
+    height:8rem;
+    border: 2px solid #293991;
+    .rG{ 
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    label{
+        margin-right: 1.5rem;
+    }
+`
+
+const BtnBox = styled.div`
+    display:flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
 `

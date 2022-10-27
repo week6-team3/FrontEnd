@@ -40,8 +40,10 @@ const SignUp = () => {
   // }
 
   const onSubmit = (payload) => {
+
     dispatch(__signUpDB(payload))
-    navigate('/users/login/')
+
+    navigate('/login')
   }
 
 
@@ -74,11 +76,12 @@ const SignUp = () => {
                 {...register("password")}
               />
               <input
-                placeholder='비밀번호를 입력하세요'
+                placeholder='비밀번호를 한번 더 입력하세요'
                 type="password"
                 {...register("confirm",)}
               />
               <Button size="size2">회원가입</Button>
+
             </SignUpWrap>
           </SignUpBox>
         </Container>
@@ -138,5 +141,8 @@ const SignUpWrap = styled.form`
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
     /* background-color: #293991; */
-    
+    input{
+      height: 5rem;
+      width: 100%;
+    }
 `

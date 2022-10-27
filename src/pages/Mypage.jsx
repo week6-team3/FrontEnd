@@ -9,20 +9,40 @@ import Layout from '../components/Layout'
 import PostCard from '../components/PostCard'
 
 import styled from 'styled-components'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { getCookieToken } from '../shared/cookie'
+import Swal from 'sweetalert2'
 
 const Mypage = () => {
     const dispatch = useDispatch();
-    // const { id } = useParams();
-
+    const { id } = useParams();
+    const navigate = useNavigate()
+    const cookie = getCookieToken('AccessToken')
     const { posts } = useSelector((state) => state.posts)
-
+    console.log("ㅇㅇ", posts)
     useEffect(() => {
         dispatch(__getPosts());
     }, [dispatch])
+
+
+    // useEffect(() => {
+    //     dispatch(__detailPosts(+id));
+    // }, [dispatch, id])
+
     useEffect(() => {
-        dispatch(__detailPosts());
-    }, [dispatch])
+        if (!cookie) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'warning',
+                title: '로그인을 해주세요!',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            navigate("/login");
+        }
+    }, [cookie, navigate]);
+
+
 
 
     return (
@@ -32,11 +52,11 @@ const Mypage = () => {
                 <Categorie />
                 <Container>
                     <ListWrapper>
-                        {posts.filter(post => !post.completion).map(post => <PostCard key={post.id} post={post} />)}
+                        {posts.filter(post => !post?.completion)?.map(post => <PostCard key={post?.postId} post={post} />)}
                     </ListWrapper>
                     <ListLine />
                     <ListWrapper>
-                        {posts.filter(post => post.completion).map(post => <PostCard key={post.id} post={post} />)}
+                        {posts.filter(post => post?.completion)?.map(post => <PostCard key={post?.postId} post={post} />)}
                     </ListWrapper>
                 </Container>
                 <Footer />

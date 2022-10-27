@@ -12,10 +12,8 @@ const initialState = {
 export const __addPosts = createAsyncThunk(
   "posts/addPosts",
   async (postData, thunkAPI) => {
-    console.log("ps", postData);
     try {
       const { data } = await Api.post("/posts", postData);
-      console.log("data", data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -29,7 +27,6 @@ export const __getPosts = createAsyncThunk(
   async (payload, thunkAPI) => {
     try {
       const { data } = await Api.get("/posts");
-      console.log(typeof data.travel);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -41,8 +38,10 @@ export const __getPosts = createAsyncThunk(
 export const __editPosts = createAsyncThunk(
   "posts/editPosts",
   async (postId, thunkAPI) => {
+    console.log("id", postId);
     try {
-      const { data } = await Api.patch(`/posts/${postId.id}`, postId);
+      const { data } = await Api.patch("/posts", postId);
+      console.log("data", data);
       return thunkAPI.fulfillWithValue(data);
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -67,7 +66,6 @@ export const __deletePosts = createAsyncThunk(
 export const __detailPosts = createAsyncThunk(
   "posts/detailPosts",
   async (postId, thunkAPI) => {
-    console.log("thunk", postId);
     try {
       await Api.get(`/posts/${postId}`);
       return thunkAPI.fulfillWithValue(postId);
@@ -140,6 +138,7 @@ const postsSlice = createSlice({
       state.isLoading = true;
     },
     [__detailPosts.fulfilled]: (state, action) => {
+      console.log("action", action);
       state.isLoading = false;
       state.posts = action.payload;
     },

@@ -9,7 +9,6 @@ const initialState = {
 export const __sharePost = createAsyncThunk(
   "sharings/sharePost",
   async (sharePostData, thunkAPI) => {
-    console.log("share2", sharePostData);
     try {
       const { data } = await Api.post("/sharings", sharePostData);
       return thunkAPI.fulfillWithValue(data);

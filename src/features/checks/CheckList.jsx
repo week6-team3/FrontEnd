@@ -19,8 +19,8 @@ const CheckList = () => {
         dispatch(__getCheckList())
     }, [dispatch])
     useEffect(() => {
-        dispatch(__detailPosts());
-    }, [dispatch])
+        dispatch(__detailPosts(+id));
+    }, [dispatch, id])
 
 
     return (
@@ -29,14 +29,14 @@ const CheckList = () => {
             <h1>😢날 잊지 말아줘..😢</h1>
             <div>
                 <div>
-                    {checkList.filter(check => !check.isDone).map((check) => check.postId === Number(id) ? <Checks key={check.id} check={check} /> : null)}
+                    {checkList.filter(check => !check?.isDone).map((check) => check?.postId === Number(id) ? <Checks key={check?.id} check={check} /> : null)}
                 </div>
             </div>
             <ListLine />
             <h1>😭고..고마워..!😭</h1>
             <div>
                 <div>
-                    {checkList.filter(check => check.isDone).map((check) => check.postId === Number(id) ? <Checks key={check.id} check={check} /> : null)}
+                    {checkList.filter(check => check?.isDone).map((check) => check?.postId === Number(id) ? <Checks key={check?.id} check={check} /> : null)}
                 </div>
             </div>
 

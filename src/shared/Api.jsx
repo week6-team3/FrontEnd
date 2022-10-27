@@ -39,6 +39,6 @@ const Api = axios.create({
 
 
 });
-Api.defaults.withCredential = true;
+Api.defaults.withCredentials = true;
 export default Api
 

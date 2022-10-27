@@ -1,27 +1,27 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
 
 import styled from 'styled-components';
-import { __detailPosts, __editPosts } from '../redux/modules/postsSlice';
+import { __detailPosts, __editPosts, __getPosts } from '../redux/modules/postsSlice';
 
 const PostCard = ({ post }) => {
     const dispatch = useDispatch()
     const navigate = useNavigate();
 
-    console.log('pst', post)
+    console.log("editPost", post)
 
 
     const onEditHandler = () => {
-        dispatch(__editPosts({ id: post.id, completion: !post.completion }))
+        dispatch(__editPosts({ postId: post?.postId }))
     }
 
 
     const onDetailPage = () => {
         dispatch(__detailPosts({ postId: post.postId }))
         navigate(`/my_detail/${post.postId}`)
-        console.log("postId1", post.postId)
+
     }
 
     return (

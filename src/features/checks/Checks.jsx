@@ -9,18 +9,18 @@ const Checks = ({ check }) => {
     const dispatch = useDispatch()
 
     const onDeleteHandler = () => {
-        dispatch(__deleteCheckList(check.id))
+        dispatch(__deleteCheckList(check?.id))
     }
     const onEditHandler = () => {
-        dispatch(__editCheckList({ id: check.id, data: { isDone: !check.isDone } }))
+        dispatch(__editCheckList({ id: check?.id, data: { isDone: !check?.isDone } }))
     }
 
     return (
         <>
             <CheckWrap>
-                <p>{check.content}</p>
+                <p>{check?.content}</p>
                 <div>
-                    <Button size="size1" onClick={onEditHandler}>{check.isDone ? "챙김" : "챙겨"}</Button>
+                    <Button size="size1" onClick={onEditHandler}>{check?.isDone ? "챙김" : "챙겨"}</Button>
                     <Button id="btn" size="size1" onClick={onDeleteHandler}>삭제</Button>
                 </div>
             </CheckWrap>

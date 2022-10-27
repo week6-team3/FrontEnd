@@ -34,7 +34,15 @@ const LogIn = (props) => {
         }
         try {
             const response = await Api.post('/login', info) //{ withCredentials: true }
-            console.log("token", response)
+            console.log("acc", response.data)
+            if (response.data?.loginUserResult === undefined) {
+                Swal.fire({
+                    icon: "error",
+                    title: "다시 확인해주세요!",
+                    text: "아이디 또는 비밀번호가 틀렸습니다.",
+                });
+                throw new Error("에러메세지")
+            }
             setAccessToken(response.data.loginUserResult.AccessToken);
             setRefreshToken(response.data.loginUserResult["RefreshToken"]); //["RefreshToken"]
             const AccessToken = response.data.loginUserResult
@@ -45,18 +53,19 @@ const LogIn = (props) => {
             localStorage.setItem("AccessToken", AccessToken);
             localStorage.setItem("RefreshToken", RefreshToken);
             localStorage.setItem("nickname", NickName);
+            console.log("data", response.data)
             if (response.data.message === "로그인을 성공하셨습니다!") {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: '로그인에 성공하였습니다!',
+                    showConfirmButton: false,
+                    timer: 1000
+                })
                 navigate("/");
             }
         } catch (error) {
-
-            if (error.code === "ERR_BAD_REQUEST") {
-                Swal.fire({
-                    icon: "error",
-                    title: "다시 확인해주세요!",
-                    text: "아이디 또는 비밀번호가 틀렸습니다.",
-                });
-            }
+            console.log(error)
         }
 
     }

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { __addCheck, __deletePosts, __editPosts, __getPosts } from '../redux/modules/postsSlice'
+import { __addCheck, __deletePosts, __detailPosts, __editPosts, __getPosts } from '../redux/modules/postsSlice'
 
 import Footer from '../components/Footer'
 import Header from '../components/Header'
@@ -14,6 +14,7 @@ import styled from 'styled-components'
 import Swal from 'sweetalert2'
 import CategorieInfo from '../components/CategorieInfo'
 import { __sharePost } from '../redux/modules/sharingsSlice'
+import { getCookieToken } from '../shared/cookie'
 
 // import { __getCheckList } from '../redux/modules/checkListSlice'
 
@@ -25,8 +26,9 @@ const MypageDetail = () => {
 
     const { id } = useParams();
     const { posts } = useSelector((state) => state.posts);
-    const post = posts.find((post) => post.id === +id)
+    const post = posts.find((post) => post?.id === +id)
     console.log("po", post)
+    const cookie = getCookieToken('AccessToken')
 
     const [isEdit, setIsEdit] = useState(false)
     const [editPost, setEditPost] = useState({
@@ -39,8 +41,21 @@ const MypageDetail = () => {
     }, [dispatch])
 
     useEffect(() => {
-        dispatch(__getPosts());
-    }, [dispatch])
+        dispatch(__detailPosts(+id));
+    }, [dispatch, id])
+
+    useEffect(() => {
+        if (!cookie) {
+            Swal.fire({
+                position: 'top-end',
+                icon: 'warning',
+                title: '로그인을 해주세요!',
+                showConfirmButton: false,
+                timer: 1000
+            })
+            navigate("/login");
+        }
+    }, [cookie, navigate]);
 
 
     const onDeleteHandler = (e) => {
@@ -61,7 +76,7 @@ const MypageDetail = () => {
                     '게시글이 삭제 되었어요!',
                     'success'
                 )
-                navigate("/mypage/:id")
+                navigate("/mypage")
             }
         })
     }
@@ -76,7 +91,7 @@ const MypageDetail = () => {
             })
         }
         if (editPost.title.trim() === "") return;
-        dispatch(__editPosts({ ...post, ...editPost }))
+        dispatch(__editPosts({ ...editPost }))
         setIsEdit(false)
     }
 
@@ -92,7 +107,7 @@ const MypageDetail = () => {
             confirmButtonText: 'Share'
         }).then((result) => {
             if (result.isConfirmed) {
-                dispatch(__sharePost({ postId: post.id }))
+                dispatch(__sharePost({ postId: +id }))
                 Swal.fire(
                     '공유 완료!',
                     '게시글이 공유 되었어요!',
